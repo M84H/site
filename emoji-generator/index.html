@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Unicode 15.0 Emoji Generator</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+    #emoji {
+      font-size: 100px;
+      margin: 20px;
+    }
+    button {
+      font-size: 20px;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎲 Unicode 15.0 Emoji Generator</h1>
+  <div id="emoji">🫨</div>
+  <button onclick="generateEmoji()">Generate Emoji</button>
+
+  <script>
+    const emojis = [
+      "🫨", // Shaking Face
+      "🫷", // Leftwards Pushing Hand
+      "🫸", // Rightwards Pushing Hand
+      "🫏", // Donkey
+      "🪿", // Goose
+      "🪼", // Jellyfish
+      "🛝", // Playground Slide
+      "🪩", // Mirror Ball
+      "🪭", // Folding Hand Fan
+      "🪮", // Hair Pick
+      "🪈", // Maracas
+      "🪇", // Flute
+      "🪯", // Khanda
+      "🪻", // Hyacinth
+      "🪼", // Jellyfish
+      "🩷", // Pink Heart
+      "🩵", // Light Blue Heart
+      "🩶", // Grey Heart
+      "🫶", // Heart Hands
+      "🫰", // Hand with Index Finger and Thumb Crossed
+      "🫱", // Rightwards Hand
+      "🫲", // Leftwards Hand
+      "🫳", // Palm Down Hand
+      "🫴", // Palm Up Hand
+      "🫵", // Index Pointing at the Viewer
+      "🫶", // Heart Hands
+      "🫷", // Leftwards Pushing Hand
+      "🫸", // Rightwards Pushing Hand
+      "🫹", // Leftwards Pushing Hand: Light Skin Tone
+      "🫺", // Rightwards Pushing Hand: Light Skin Tone
+      "🫻"  // Leftwards Pushing Hand: Medium-Light Skin Tone
+    ];
+
+    function generateEmoji() {
+      const randomIndex = Math.floor(Math.random() * emojis.length);
+      document.getElementById("emoji").textContent = emojis[randomIndex];
+    }
+  </script>
+
+</body>
+</html>
