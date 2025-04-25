@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Unicode 15.0 Emoji Generator</title>
+  <title>Emoji Generator</title>
   <style>
     body {
       font-family: sans-serif;
@@ -21,49 +21,80 @@
   </style>
 </head>
 <body>
-
-  <h1>🎲 Unicode 15.0 Emoji Generator</h1>
+  <h1>🎲 Emoji Generator</h1>
   <div id="emoji">🫨</div>
   <button onclick="generateEmoji()">Generate Emoji</button>
-
   <script>
-    const emojis = [
-      "🫨", // Shaking Face
-      "🫷", // Leftwards Pushing Hand
-      "🫸", // Rightwards Pushing Hand
-      "🫏", // Donkey
-      "🪿", // Goose
-      "🪼", // Jellyfish
-      "🛝", // Playground Slide
-      "🪩", // Mirror Ball
-      "🪭", // Folding Hand Fan
-      "🪮", // Hair Pick
-      "🪈", // Maracas
-      "🪇", // Flute
-      "🪯", // Khanda
-      "🪻", // Hyacinth
-      "🪼", // Jellyfish
-      "🩷", // Pink Heart
-      "🩵", // Light Blue Heart
-      "🩶", // Grey Heart
-      "🫶", // Heart Hands
-      "🫰", // Hand with Index Finger and Thumb Crossed
-      "🫱", // Rightwards Hand
-      "🫲", // Leftwards Hand
-      "🫳", // Palm Down Hand
-      "🫴", // Palm Up Hand
-      "🫵", // Index Pointing at the Viewer
-      "🫶", // Heart Hands
-      "🫷", // Leftwards Pushing Hand
-      "🫸", // Rightwards Pushing Hand
-      "🫹", // Leftwards Pushing Hand: Light Skin Tone
-      "🫺", // Rightwards Pushing Hand: Light Skin Tone
-      "🫻"  // Leftwards Pushing Hand: Medium-Light Skin Tone
+    
+    // Face Emojis
+    const faceEmojis = [
+      "😀", "😃", "😄", "😁", "😆", "😅", "😂", "🤣", "😊", "😇",
+      "🙂", "🙃", "😉", "😌", "😍", "🥰", "😘", "😗", "😙", "😚",
+      "😋", "😛", "😝", "😜", "🤪", "🤨", "🧐", "🤓", "😎", "🥸",
+      "🤩", "🥳", "😏", "😒", "😞", "😔", "😟", "😕", "🙁", "☹️",
+      "😣", "😖", "😫", "😩", "🥺", "😢", "😭", "😤", "😠", "😡",
+      "🤬", "🤯", "😳", "🥵", "🥶", "😱", "😨", "😰", "😥", "😓",
+      "🤗", "🤔", "🫢", "🤭", "🫣", "🤫", "🤥", "😶", "😐", "😑",
+      "🫤", "😬", "🙄", "😯", "😦", "😧", "😮", "😲", "🥱", "😴",
+      "🤤", "😪", "😵", "😵‍💫", "🤐", "🥴", "🤢", "🤮", "🤧", "😷",
+      "🤒", "🤕", "🤑", "🤠", "😈", "👿", "👹", "👺", "🤡", "💩",
+      "👻", "💀", "☠️", "👽", "👾", "🤖", "😺", "😸", "😹", "😻",
+      "😼", "😽", "🙀", "😿", "😾", "🫠", "🫨"
     ];
 
+    // Animal Emojis
+    const animalEmojis = ["🐶", "🐱", "🐭", "🐹", "🐰", "🦊", "🐻", "🐼", "🐨", "🐯"];
+
+    // Plant Emojis
+    const plantEmojis = ["🌱", "🌿", "☘️", "🍀", "🎍", "🪴", "🌵", "🌴", "🌳", "🌲"];
+
+    // Food Emojis
+    const foodEmojis = ["🍎", "🍊", "🍌", "🍉", "🍇", "🍓", "🫐", "🍈", "🍒", "🍑"];
+
+    // Place Emojis
+    const placeEmojis = ["🏠", "🏡", "🏢", "🏣", "🏤", "🏥", "🏦", "🏨", "🏩", "🏪"];
+
+    // Transport Emojis
+    const transportEmojis = ["🚗", "🚕", "🚙", "🚌", "🚎", "🏎️", "🚓", "🚑", "🚒", "🚐"];
+
+    // Sky & Weather Emojis
+    const skyWeatherEmojis = ["☀️", "🌤️", "⛅", "🌥️", "🌦️", "🌧️", "⛈️", "🌩️", "🌨️", "❄️"];
+
+    // Activities Emojis
+    const activitiesEmojis = ["🎯", "🎳", "🎮", "🎰", "🎲", "🧩", "🧸", "🪀", "🪁", "🛝"];
+
+    // Sport Emojis
+    const sportEmojis = ["⚽", "🏀", "🏈", "⚾", "🎾", "🏐", "🏉", "🥏", "🎱", "🏓"];
+
+    // Game Emojis
+    const gameEmojis = ["♠️", "♥️", "♦️", "♣️", "🃏", "🀄", "🎴", "🎮", "🕹️", "🎲"];
+
+    // Arts & Crafts Emojis
+    const artsCraftsEmojis = ["🎨", "🖌️", "🖍️", "📝", "✏️", "✒️", "🖋️", "🖊️", "🗿", "🎭"];
+
+    // Objects Emojis
+    const objectsEmojis = ["📱", "💻", "🖥️", "🖨️", "🕹️", "🗜️", "💽", "💾", "💿", "📀"];
+
+    // Combine all categories into one array
+    const allEmojis = [
+      ...faceEmojis,
+      ...animalEmojis,
+      ...plantEmojis,
+      ...foodEmojis,
+      ...placeEmojis,
+      ...transportEmojis,
+      ...skyWeatherEmojis,
+      ...activitiesEmojis,
+      ...sportEmojis,
+      ...gameEmojis,
+      ...artsCraftsEmojis,
+      ...objectsEmojis
+    ];
+
+    // Function to generate a random emoji
     function generateEmoji() {
-      const randomIndex = Math.floor(Math.random() * emojis.length);
-      document.getElementById("emoji").textContent = emojis[randomIndex];
+      const randomIndex = Math.floor(Math.random() * allEmojis.length);
+      document.getElementById("emoji").textContent = allEmojis[randomIndex];
     }
   </script>
 
