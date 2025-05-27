@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Folding Screen Scrollama</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      margin: auto;
+    }
+    .graphic {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      width: 66.66%;
+      background-color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .graphic svg {
+      width: 100%;
+      height: auto;
+      max-height: 90vh;
+    }
+    .text {
+      width: 33.33%;
+      padding: 30px;
+      box-sizing: border-box;
+      overflow-y: auto;
+      max-height: 100vh;
+    }
+    .step {
+      margin-bottom: 100px;
+      font-size: 1rem;
+      border-left: 4px solid transparent;
+      padding-left: 10px;
+      transition: border 0.3s ease;
+    }
+    .step.is-active {
+      border-left: 4px solid #333;
+    }
+    .step img {
+      max-width: 100%;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="graphic">
+      <svg id="vis" viewBox="0 0 3000 1500" preserveAspectRatio="xMidYMid meet">
+        <image id="screen-image" href="https://images.collections.yale.edu/iiif/2/yuag:09d1c846-2bb0-4d22-978e-7eaac135670e/full/full/0/default.jpg" width="3000" height="1500" />
+        <!-- Highlight regions (18 total, 6 per step) -->
+        <g id="step1-highlights">
+          <rect x="625" y="634" width="160" height="321" fill="none" stroke="red" stroke-width="10" visibility="hidden" />
+          <rect x="800" y="375" width="150" height="310" fill="none" stroke="red" stroke-width="10" visibility="hidden" />
+          <rect x="1140" y="800" width="100" height="270" fill="none" stroke="red" stroke-width="10" visibility="hidden" />
+          <rect x="1370" y="390" width="150" height="321" fill="none" stroke="red" stroke-width="10" visibility="hidden" />
+          <rect x="1600" y="380" width="100" height="300" fill="none" stroke="red" stroke-width="10" visibility="hidden" />
+          <rect x="2000" y="580" width="150" height="300" fill="none" stroke="red" stroke-width="10" visibility="hidden" />
+          <rect x="2500" y="350" width="130" height="300" fill="none" stroke="red" stroke-width="10" visibility="hidden" />
+        </g>
+        <g id="step2-highlights">
+          <rect x="200" y="800" width="100" height="100" fill="none" stroke="blue" stroke-width="10" visibility="hidden" />
+          <rect x="500" y="820" width="90" height="90" fill="none" stroke="blue" stroke-width="10" visibility="hidden" />
+          <rect x="800" y="840" width="80" height="80" fill="none" stroke="blue" stroke-width="10" visibility="hidden" />
+          <rect x="1100" y="860" width="70" height="70" fill="none" stroke="blue" stroke-width="10" visibility="hidden" />
+          <rect x="1400" y="880" width="60" height="60" fill="none" stroke="blue" stroke-width="10" visibility="hidden" />
+          <rect x="1700" y="900" width="50" height="50" fill="none" stroke="blue" stroke-width="10" visibility="hidden" />
+        </g>
+        <g id="step3-highlights">
+          <rect x="300" y="100" width="100" height="100" fill="none" stroke="green" stroke-width="10" visibility="hidden" />
+          <rect x="600" y="120" width="90" height="90" fill="none" stroke="green" stroke-width="10" visibility="hidden" />
+          <rect x="900" y="140" width="80" height="80" fill="none" stroke="green" stroke-width="10" visibility="hidden" />
+          <rect x="1200" y="160" width="70" height="70" fill="none" stroke="green" stroke-width="10" visibility="hidden" />
+          <rect x="1500" y="180" width="60" height="60" fill="none" stroke="green" stroke-width="10" visibility="hidden" />
+          <rect x="1800" y="200" width="50" height="50" fill="none" stroke="green" stroke-width="10" visibility="hidden" />
+        </g>
+      </svg>
+    </div>
+    <div class="text">
+      <div class="step" data-step="1">
+        <h2>Theme 1: Courtly Life and Seasonal Motifs</h2>
+        <p>This section provides an in-depth look at one part of the folding screen, offering historical and artistic context. The vibrant red highlights mark areas of particular interest, revealing themes of courtly life and seasonal motifs. Scholars suggest these panels might have been commissioned to commemorate a significant political alliance or social celebration. Further details about stylistic influences and pigment usage help decode its aesthetic language.</p>
+        <img src="https://images.collections.yale.edu/iiif/2/yuag:09d1c846-2bb0-4d22-978e-7eaac135670e/full/400,/0/default.jpg" alt="small screen section" />
+        <p><a href="https://www.google.com" target="_blank">Read more here</a></p>
+      </div>
+      <div class="step" data-step="2">
+        <h2>Theme 2: Seasonal Transitions and Poetic Gatherings</h2>
+        <p>This view focuses on a lower section of the screen where water motifs and gatherings suggest seasonal transitions and poetic gatherings. The blue highlights direct the viewer to points where the artist’s brush technique subtly shifts. Comparisons to other screen paintings of the Edo period reveal common iconographic elements while underscoring the uniqueness of this piece.</p>
+        <img src="https://images.collections.yale.edu/iiif/2/yuag:09d1c846-2bb0-4d22-978e-7eaac135670e/full/400,/0/default.jpg" alt="small screen section" />
+        <p><a href="https://www.google.com" target="_blank">Read more here</a></p>
+      </div>
+      <div class="step" data-step="3">
+        <h2>Theme 3: Narrative Elements and Underlying Structures</h2>
+        <p>The green highlighted panels suggest a narrative unfolding through architectural and figural motifs. Evidence from diaries and period catalogues hint at the identities of the figures depicted, while the spatial layout aligns with conventions found in emakimono and other narrative formats. Conservation efforts have revealed underdrawings that shed light on the planning process.</p>
+        <img src="https://images.collections.yale.edu/iiif/2/yuag:09d1c846-2bb0-4d22-978e-7eaac135670e/full/400,/0/default.jpg" alt="small screen section" />
+        <p><a href="https://www.google.com" target="_blank">Read more here</a></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://unpkg.com/scrollama"></script>
+  <script>
+    const scroller = scrollama();
+
+    function handleStepEnter(response) {
+      d3.selectAll(".step").classed("is-active", (d, i, nodes) => nodes[i] === response.element);
+      d3.selectAll("g[id$='highlights']").selectAll("rect").attr("visibility", "hidden");
+      if (response.index === 0) {
+        d3.select("#step1-highlights").selectAll("rect").attr("visibility", "visible");
+      } else if (response.index === 1) {
+        d3.select("#step2-highlights").selectAll("rect").attr("visibility", "visible");
+      } else if (response.index === 2) {
+        d3.select("#step3-highlights").selectAll("rect").attr("visibility", "visible");
+      }
+    }
+
+    function init() {
+      scroller
+        .setup({ step: ".step", offset: 0.5, debug: false })
+        .onStepEnter(handleStepEnter);
+      window.addEventListener("resize", scroller.resize);
+    }
+
+    init();
+  </script>
+</body>
+</html>
