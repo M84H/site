@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historical Japanese Transcription Tool</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .panel {
+            margin-bottom: 30px;
+        }
+
+        .panel-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .panel-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .copy-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: #5568d3;
+            transform: translateY(-1px);
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 18px;
+            line-height: 1.8;
+            resize: vertical;
+            transition: border-color 0.2s;
+            font-family: 'MS Mincho', 'Yu Mincho', serif;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        #historicalInput.font-loaded {
+            font-family: 'IPAmj Mincho', 'MS Mincho', 'Yu Mincho', serif;
+        }
+
+        #modernOutput {
+            background: #f8f9fa;
+        }
+
+        .controls {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #e0e0e0;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            background: #d0d0d0;
+        }
+
+        .info-box {
+            background: #f0f4ff;
+            border-left: 4px solid #667eea;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            font-size: 14px;
+            color: #856404;
+        }
+
+        .char-count {
+            font-size: 12px;
+            color: #666;
+            margin-top: 8px;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 12px;
+        }
+
+        .status.ready {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status.loading {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .font-load-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s;
+            margin-top: 12px;
+        }
+
+        .font-load-btn:hover {
+            background: #218838;
+            transform: translateY(-1px);
+        }
+
+        .font-load-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 12px;
+            display: none;
+        }
+
+        .progress-bar.active {
+            display: block;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            width: 0%;
+            transition: width 0.3s;
+        }
+
+        .font-info {
+            font-size: 12px;
+            color: #666;
+            margin-top: 8px;
+        }
+
+        .character-picker {
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .character-picker.collapsed {
+            max-height: 60px;
+            overflow: hidden;
+        }
+
+        .picker-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .picker-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .toggle-picker {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.2s;
+        }
+
+        .toggle-picker:hover {
+            background: #5568d3;
+        }
+
+        .kana-group {
+            margin-bottom: 16px;
+        }
+
+        .kana-group-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 8px;
+            padding-bottom: 4px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .kana-chars {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        .kana-char {
+            width: 40px;
+            height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 20px;
+            transition: all 0.2s;
+            font-family: 'IPAmj Mincho', 'MS Mincho', serif;
+        }
+
+        .kana-char:hover {
+            background: #667eea;
+            color: white;
+            transform: scale(1.1);
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+        }
+
+        .kana-char:active {
+            transform: scale(0.95);
+        }
+
+        .picker-search {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            margin-bottom: 16px;
+            font-size: 14px;
+        }
+
+        .picker-search:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📜 Historical Japanese Transcription Tool</h1>
+            <p>Convert manuscripts with variant kana (変体仮名) to modern Japanese orthography</p>
+        </div>
+
+        <div class="content">
+            <div class="info-box">
+                <strong>💡 How to use:</strong> Click "Load Font" below, then type or paste your historical Japanese text. The tool will convert hentaigana and historical characters to modern standard Japanese.
+            </div>
+
+            <div class="info-box" style="border-left-color: #6c757d; background: #f8f9fa;">
+                <strong>📄 Font License:</strong> This tool uses the IPAmj Mincho font, which is licensed under the <a href="https://moji.or.jp/ipafont/license/" target="_blank" style="color: #667eea; text-decoration: underline;">IPA Font License v1.0</a>. 
+                The font is provided by the <a href="https://moji.or.jp/mojikiban/font/" target="_blank" style="color: #667eea; text-decoration: underline;">Information-technology Promotion Agency, Japan (IPA)</a>.
+                © 2011-2019 Information-technology Promotion Agency, Japan (IPA)
+            </div>
+
+            <div id="fontWarning" class="warning-box">
+                <strong>⚠️ Font Not Loaded:</strong> The IPAmj Mincho font (29.8MB) needs to be loaded to display historical characters correctly. 
+                <div class="font-info">This is a one-time download that will be cached by your browser for future visits.</div>
+                <button class="font-load-btn" id="loadFontBtn" onclick="loadFont()">📥 Load IPAmj Mincho Font (29.8MB)</button>
+                <div class="progress-bar" id="progressBar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="font-info" id="fontLoadStatus"></div>
+            </div>
+
+            <div class="controls">
+                <button class="btn btn-primary" onclick="convertText()">🔄 Convert to Modern Japanese</button>
+                <button class="btn btn-secondary" onclick="clearAll()">🗑️ Clear All</button>
+                <button class="btn btn-secondary" onclick="swapTexts()">⇄ Swap</button>
+                <button class="btn btn-secondary" onclick="downloadBoth()">💾 Download Both</button>
+            </div>
+
+            <div class="character-picker" id="characterPicker">
+                <div class="picker-header">
+                    <span class="picker-title">🔤 Hentaigana Character Picker</span>
+                    <button class="toggle-picker" onclick="togglePicker()">Collapse ▲</button>
+                </div>
+                <input type="text" class="picker-search" id="pickerSearch" placeholder="Search by modern kana (e.g., 'あ', 'か')..." oninput="filterCharacters()">
+                <div id="characterGrid"></div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-header">
+                    <div>
+                        <span class="panel-title">Historical Text (Original Manuscript)</span>
+                        <span class="status loading" id="fontStatus">Font not loaded</span>
+                    </div>
+                    <button class="copy-btn" onclick="copyToClipboard('historicalInput')">📋 Copy</button>
+                </div>
+                <textarea 
+                    id="historicalInput" 
+                    placeholder="Load the font first, then enter historical Japanese text (変体仮名 and historical variants)..."
+                    oninput="updateCharCount('historicalInput', 'historicalCount')"></textarea>
+                <div class="char-count" id="historicalCount">0 characters</div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-header">
+                    <span class="panel-title">Modern Japanese (Standardized)</span>
+                    <button class="copy-btn" onclick="copyToClipboard('modernOutput')">📋 Copy</button>
+                </div>
+                <textarea 
+                    id="modernOutput" 
+                    placeholder="Converted modern Japanese will appear here..."
+                    oninput="updateCharCount('modernOutput', 'modernCount')"></textarea>
+                <div class="char-count" id="modernCount">0 characters</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const hentaiganaMap = {
+            '\u{1B001}': 'あ', '\u{1B002}': 'あ', '\u{1B003}': 'あ', '\u{1B004}': 'あ', '\u{1B005}': 'あ',
+            '\u{1B006}': 'い', '\u{1B007}': 'い', '\u{1B008}': 'い', '\u{1B009}': 'い', '\u{1B00A}': 'い', '\u{1B00B}': 'い',
+            '\u{1B00C}': 'う', '\u{1B00D}': 'う', '\u{1B00E}': 'う', '\u{1B00F}': 'う', '\u{1B010}': 'う', '\u{1B011}': 'う',
+            '\u{1B012}': 'え', '\u{1B013}': 'え', '\u{1B014}': 'え', '\u{1B015}': 'え', '\u{1B016}': 'え', '\u{1B017}': 'え',
+            '\u{1B018}': 'お', '\u{1B019}': 'お', '\u{1B01A}': 'お', '\u{1B01B}': 'お', '\u{1B01C}': 'お', '\u{1B01D}': 'お',
+            '\u{1B01E}': 'か', '\u{1B01F}': 'か', '\u{1B020}': 'か', '\u{1B021}': 'か', '\u{1B022}': 'か', '\u{1B023}': 'か',
+            '\u{1B024}': 'が', '\u{1B025}': 'が',
+            '\u{1B026}': 'き', '\u{1B027}': 'き', '\u{1B028}': 'き', '\u{1B029}': 'き', '\u{1B02A}': 'き', '\u{1B02B}': 'き',
+            '\u{1B02C}': 'ぎ', '\u{1B02D}': 'ぎ',
+            '\u{1B02E}': 'く', '\u{1B02F}': 'く', '\u{1B030}': 'く', '\u{1B031}': 'く',
+            '\u{1B032}': 'ぐ',
+            '\u{1B033}': 'け', '\u{1B034}': 'け', '\u{1B035}': 'け', '\u{1B036}': 'け', '\u{1B037}': 'け', '\u{1B038}': 'け',
+            '\u{1B039}': 'げ', '\u{1B03A}': 'げ',
+            '\u{1B03B}': 'こ', '\u{1B03C}': 'こ', '\u{1B03D}': 'こ', '\u{1B03E}': 'こ', '\u{1B03F}': 'こ', '\u{1B040}': 'こ',
+            '\u{1B041}': 'ご',
+            '\u{1B042}': 'さ', '\u{1B043}': 'さ', '\u{1B044}': 'さ', '\u{1B045}': 'さ', '\u{1B046}': 'さ', '\u{1B047}': 'さ',
+            '\u{1B048}': 'ざ',
+            '\u{1B049}': 'し', '\u{1B04A}': 'し', '\u{1B04B}': 'し', '\u{1B04C}': 'し', '\u{1B04D}': 'し', '\u{1B04E}': 'し',
+            '\u{1B04F}': 'じ',
+            '\u{1B050}': 'す', '\u{1B051}': 'す', '\u{1B052}': 'す', '\u{1B053}': 'す', '\u{1B054}': 'す', '\u{1B055}': 'す',
+            '\u{1B056}': 'ず',
+            '\u{1B057}': 'せ', '\u{1B058}': 'せ', '\u{1B059}': 'せ', '\u{1B05A}': 'せ', '\u{1B05B}': 'せ', '\u{1B05C}': 'せ',
+            '\u{1B05D}': 'ぜ',
+            '\u{1B05E}': 'そ', '\u{1B05F}': 'そ', '\u{1B060}': 'そ', '\u{1B061}': 'そ', '\u{1B062}': 'そ', '\u{1B063}': 'そ',
+            '\u{1B064}': 'ぞ',
+            '\u{1B065}': 'た', '\u{1B066}': 'た', '\u{1B067}': 'た', '\u{1B068}': 'た', '\u{1B069}': 'た',
+            '\u{1B06A}': 'だ',
+            '\u{1B06B}': 'ち', '\u{1B06C}': 'ち', '\u{1B06D}': 'ち', '\u{1B06E}': 'ち', '\u{1B06F}': 'ち',
+            '\u{1B070}': 'ぢ',
+            '\u{1B071}': 'つ', '\u{1B072}': 'つ', '\u{1B073}': 'つ', '\u{1B074}': 'つ',
+            '\u{1B075}': 'づ',
+            '\u{1B076}': 'て', '\u{1B077}': 'て', '\u{1B078}': 'て', '\u{1B079}': 'て', '\u{1B07A}': 'て',
+            '\u{1B07B}': 'で',
+            '\u{1B07C}': 'と', '\u{1B07D}': 'と', '\u{1B07E}': 'と', '\u{1B07F}': 'と', '\u{1B080}': 'と',
+            '\u{1B081}': 'ど',
+            '\u{1B082}': 'な', '\u{1B083}': 'な', '\u{1B084}': 'な', '\u{1B085}': 'な', '\u{1B086}': 'な',
+            '\u{1B087}': 'に', '\u{1B088}': 'に', '\u{1B089}': 'に', '\u{1B08A}': 'に',
+            '\u{1B08B}': 'ぬ', '\u{1B08C}': 'ぬ', '\u{1B08D}': 'ぬ',
+            '\u{1B08E}': 'ね', '\u{1B08F}': 'ね', '\u{1B090}': 'ね', '\u{1B091}': 'ね',
+            '\u{1B092}': 'の', '\u{1B093}': 'の', '\u{1B094}': 'の', '\u{1B095}': 'の',
+            '\u{1B096}': 'は', '\u{1B097}': 'は', '\u{1B098}': 'は', '\u{1B099}': 'は', '\u{1B09A}': 'は', '\u{1B09B}': 'は',
+            '\u{1B09C}': 'ば', '\u{1B09D}': 'ぱ',
+            '\u{1B09E}': 'ひ', '\u{1B09F}': 'ひ', '\u{1B0A0}': 'ひ', '\u{1B0A1}': 'ひ', '\u{1B0A2}': 'ひ',
+            '\u{1B0A3}': 'び', '\u{1B0A4}': 'び', '\u{1B0A5}': 'ぴ',
+            '\u{1B0A6}': 'ふ', '\u{1B0A7}': 'ふ', '\u{1B0A8}': 'ふ', '\u{1B0A9}': 'ふ',
+            '\u{1B0AA}': 'ぶ', '\u{1B0AB}': 'ぷ',
+            '\u{1B0AC}': 'へ', '\u{1B0AD}': 'へ', '\u{1B0AE}': 'へ', '\u{1B0AF}': 'へ',
+            '\u{1B0B0}': 'べ', '\u{1B0B1}': 'ぺ',
+            '\u{1B0B2}': 'ほ', '\u{1B0B3}': 'ほ', '\u{1B0B4}': 'ほ', '\u{1B0B5}': 'ほ', '\u{1B0B6}': 'ほ', '\u{1B0B7}': 'ほ',
+            '\u{1B0B8}': 'ぼ', '\u{1B0B9}': 'ぽ',
+            '\u{1B0BA}': 'ま', '\u{1B0BB}': 'ま', '\u{1B0BC}': 'ま', '\u{1B0BD}': 'ま',
+            '\u{1B0BE}': 'み', '\u{1B0BF}': 'み', '\u{1B0C0}': 'み', '\u{1B0C1}': 'み',
+            '\u{1B0C2}': 'む', '\u{1B0C3}': 'む', '\u{1B0C4}': 'む', '\u{1B0C5}': 'む', '\u{1B0C6}': 'む',
+            '\u{1B0C7}': 'め', '\u{1B0C8}': 'め', '\u{1B0C9}': 'め', '\u{1B0CA}': 'め',
+            '\u{1B0CB}': 'も', '\u{1B0CC}': 'も', '\u{1B0CD}': 'も', '\u{1B0CE}': 'も', '\u{1B0CF}': 'も', '\u{1B0D0}': 'も',
+            '\u{1B0D1}': 'や', '\u{1B0D2}': 'や', '\u{1B0D3}': 'や',
+            '\u{1B0D4}': 'ゆ', '\u{1B0D5}': 'ゆ', '\u{1B0D6}': 'ゆ',
+            '\u{1B0D7}': 'よ', '\u{1B0D8}': 'よ', '\u{1B0D9}': 'よ', '\u{1B0DA}': 'よ',
+            '\u{1B0DB}': 'ら', '\u{1B0DC}': 'ら', '\u{1B0DD}': 'ら', '\u{1B0DE}': 'ら',
+            '\u{1B0DF}': 'り', '\u{1B0E0}': 'り', '\u{1B0E1}': 'り', '\u{1B0E2}': 'り',
+            '\u{1B0E3}': 'る', '\u{1B0E4}': 'る', '\u{1B0E5}': 'る',
+            '\u{1B0E6}': 'れ', '\u{1B0E7}': 'れ', '\u{1B0E8}': 'れ', '\u{1B0E9}': 'れ',
+            '\u{1B0EA}': 'ろ', '\u{1B0EB}': 'ろ', '\u{1B0EC}': 'ろ', '\u{1B0ED}': 'ろ', '\u{1B0EE}': 'ろ',
+            '\u{1B0EF}': 'わ', '\u{1B0F0}': 'わ', '\u{1B0F1}': 'わ',
+            '\u{1B0F2}': 'ゐ', '\u{1B0F3}': 'ゐ', '\u{1B0F4}': 'ゐ',
+            '\u{1B0F5}': 'ゑ', '\u{1B0F6}': 'ゑ', '\u{1B0F7}': 'ゑ', '\u{1B0F8}': 'ゑ',
+            '\u{1B0F9}': 'を', '\u{1B0FA}': 'を', '\u{1B0FB}': 'を',
+            '\u{1B0FC}': 'ん', '\u{1B0FD}': 'ん', '\u{1B0FE}': 'ん', '\u{1B0FF}': 'ん', '\u{1B100}': 'ん'
+        };
+
+        const historicalKanaMap = {
+            'ゐ': 'い', 'ゑ': 'え', 'ヰ': 'イ', 'ヱ': 'エ'
+        };
+
+        // Group hentaigana by modern equivalent for the picker
+        const hentaiganaGroups = {
+            'あ': ['\u{1B001}', '\u{1B002}', '\u{1B003}', '\u{1B004}', '\u{1B005}'],
+            'い': ['\u{1B006}', '\u{1B007}', '\u{1B008}', '\u{1B009}', '\u{1B00A}', '\u{1B00B}'],
+            'う': ['\u{1B00C}', '\u{1B00D}', '\u{1B00E}', '\u{1B00F}', '\u{1B010}', '\u{1B011}'],
+            'え': ['\u{1B012}', '\u{1B013}', '\u{1B014}', '\u{1B015}', '\u{1B016}', '\u{1B017}'],
+            'お': ['\u{1B018}', '\u{1B019}', '\u{1B01A}', '\u{1B01B}', '\u{1B01C}', '\u{1B01D}'],
+            'か': ['\u{1B01E}', '\u{1B01F}', '\u{1B020}', '\u{1B021}', '\u{1B022}', '\u{1B023}'],
+            'が': ['\u{1B024}', '\u{1B025}'],
+            'き': ['\u{1B026}', '\u{1B027}', '\u{1B028}', '\u{1B029}', '\u{1B02A}', '\u{1B02B}'],
+            'ぎ': ['\u{1B02C}', '\u{1B02D}'],
+            'く': ['\u{1B02E}', '\u{1B02F}', '\u{1B030}', '\u{1B031}'],
+            'ぐ': ['\u{1B032}'],
+            'け': ['\u{1B033}', '\u{1B034}', '\u{1B035}', '\u{1B036}', '\u{1B037}', '\u{1B038}'],
+            'げ': ['\u{1B039}', '\u{1B03A}'],
+            'こ': ['\u{1B03B}', '\u{1B03C}', '\u{1B03D}', '\u{1B03E}', '\u{1B03F}', '\u{1B040}'],
+            'ご': ['\u{1B041}'],
+            'さ': ['\u{1B042}', '\u{1B043}', '\u{1B044}', '\u{1B045}', '\u{1B046}', '\u{1B047}'],
+            'ざ': ['\u{1B048}'],
+            'し': ['\u{1B049}', '\u{1B04A}', '\u{1B04B}', '\u{1B04C}', '\u{1B04D}', '\u{1B04E}'],
+            'じ': ['\u{1B04F}'],
+            'す': ['\u{1B050}', '\u{1B051}', '\u{1B052}', '\u{1B053}', '\u{1B054}', '\u{1B055}'],
+            'ず': ['\u{1B056}'],
+            'せ': ['\u{1B057}', '\u{1B058}', '\u{1B059}', '\u{1B05A}', '\u{1B05B}', '\u{1B05C}'],
+            'ぜ': ['\u{1B05D}'],
+            'そ': ['\u{1B05E}', '\u{1B05F}', '\u{1B060}', '\u{1B061}', '\u{1B062}', '\u{1B063}'],
+            'ぞ': ['\u{1B064}'],
+            'た': ['\u{1B065}', '\u{1B066}', '\u{1B067}', '\u{1B068}', '\u{1B069}'],
+            'だ': ['\u{1B06A}'],
+            'ち': ['\u{1B06B}', '\u{1B06C}', '\u{1B06D}', '\u{1B06E}', '\u{1B06F}'],
+            'ぢ': ['\u{1B070}'],
+            'つ': ['\u{1B071}', '\u{1B072}', '\u{1B073}', '\u{1B074}'],
+            'づ': ['\u{1B075}'],
+            'て': ['\u{1B076}', '\u{1B077}', '\u{1B078}', '\u{1B079}', '\u{1B07A}'],
+            'で': ['\u{1B07B}'],
+            'と': ['\u{1B07C}', '\u{1B07D}', '\u{1B07E}', '\u{1B07F}', '\u{1B080}'],
+            'ど': ['\u{1B081}'],
+            'な': ['\u{1B082}', '\u{1B083}', '\u{1B084}', '\u{1B085}', '\u{1B086}'],
+            'に': ['\u{1B087}', '\u{1B088}', '\u{1B089}', '\u{1B08A}'],
+            'ぬ': ['\u{1B08B}', '\u{1B08C}', '\u{1B08D}'],
+            'ね': ['\u{1B08E}', '\u{1B08F}', '\u{1B090}', '\u{1B091}'],
+            'の': ['\u{1B092}', '\u{1B093}', '\u{1B094}', '\u{1B095}'],
+            'は': ['\u{1B096}', '\u{1B097}', '\u{1B098}', '\u{1B099}', '\u{1B09A}', '\u{1B09B}'],
+            'ば': ['\u{1B09C}'],
+            'ぱ': ['\u{1B09D}'],
+            'ひ': ['\u{1B09E}', '\u{1B09F}', '\u{1B0A0}', '\u{1B0A1}', '\u{1B0A2}'],
+            'び': ['\u{1B0A3}', '\u{1B0A4}'],
+            'ぴ': ['\u{1B0A5}'],
+            'ふ': ['\u{1B0A6}', '\u{1B0A7}', '\u{1B0A8}', '\u{1B0A9}'],
+            'ぶ': ['\u{1B0AA}'],
+            'ぷ': ['\u{1B0AB}'],
+            'へ': ['\u{1B0AC}', '\u{1B0AD}', '\u{1B0AE}', '\u{1B0AF}'],
+            'べ': ['\u{1B0B0}'],
+            'ぺ': ['\u{1B0B1}'],
+            'ほ': ['\u{1B0B2}', '\u{1B0B3}', '\u{1B0B4}', '\u{1B0B5}', '\u{1B0B6}', '\u{1B0B7}'],
+            'ぼ': ['\u{1B0B8}'],
+            'ぽ': ['\u{1B0B9}'],
+            'ま': ['\u{1B0BA}', '\u{1B0BB}', '\u{1B0BC}', '\u{1B0BD}'],
+            'み': ['\u{1B0BE}', '\u{1B0BF}', '\u{1B0C0}', '\u{1B0C1}'],
+            'む': ['\u{1B0C2}', '\u{1B0C3}', '\u{1B0C4}', '\u{1B0C5}', '\u{1B0C6}'],
+            'め': ['\u{1B0C7}', '\u{1B0C8}', '\u{1B0C9}', '\u{1B0CA}'],
+            'も': ['\u{1B0CB}', '\u{1B0CC}', '\u{1B0CD}', '\u{1B0CE}', '\u{1B0CF}', '\u{1B0D0}'],
+            'や': ['\u{1B0D1}', '\u{1B0D2}', '\u{1B0D3}'],
+            'ゆ': ['\u{1B0D4}', '\u{1B0D5}', '\u{1B0D6}'],
+            'よ': ['\u{1B0D7}', '\u{1B0D8}', '\u{1B0D9}', '\u{1B0DA}'],
+            'ら': ['\u{1B0DB}', '\u{1B0DC}', '\u{1B0DD}', '\u{1B0DE}'],
+            'り': ['\u{1B0DF}', '\u{1B0E0}', '\u{1B0E1}', '\u{1B0E2}'],
+            'る': ['\u{1B0E3}', '\u{1B0E4}', '\u{1B0E5}'],
+            'れ': ['\u{1B0E6}', '\u{1B0E7}', '\u{1B0E8}', '\u{1B0E9}'],
+            'ろ': ['\u{1B0EA}', '\u{1B0EB}', '\u{1B0EC}', '\u{1B0ED}', '\u{1B0EE}'],
+            'わ': ['\u{1B0EF}', '\u{1B0F0}', '\u{1B0F1}'],
+            'ゐ': ['\u{1B0F2}', '\u{1B0F3}', '\u{1B0F4}'],
+            'ゑ': ['\u{1B0F5}', '\u{1B0F6}', '\u{1B0F7}', '\u{1B0F8}'],
+            'を': ['\u{1B0F9}', '\u{1B0FA}', '\u{1B0FB}'],
+            'ん': ['\u{1B0FC}', '\u{1B0FD}', '\u{1B0FE}', '\u{1B0FF}', '\u{1B100}']
+        };
+
+        // Initialize character picker on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            renderCharacterPicker();
+        });
+
+        function renderCharacterPicker(filter = '') {
+            const grid = document.getElementById('characterGrid');
+            grid.innerHTML = '';
+            
+            for (const [modern, variants] of Object.entries(hentaiganaGroups)) {
+                // Skip if doesn't match filter
+                if (filter && !modern.includes(filter)) continue;
+                
+                const group = document.createElement('div');
+                group.className = 'kana-group';
+                
+                const title = document.createElement('div');
+                title.className = 'kana-group-title';
+                title.textContent = `${modern} variants (${variants.length})`;
+                group.appendChild(title);
+                
+                const chars = document.createElement('div');
+                chars.className = 'kana-chars';
+                
+                variants.forEach(char => {
+                    const btn = document.createElement('button');
+                    btn.className = 'kana-char';
+                    btn.textContent = char;
+                    btn.title = `Insert ${char} (variant of ${modern})`;
+                    btn.onclick = () => insertCharacter(char);
+                    chars.appendChild(btn);
+                });
+                
+                group.appendChild(chars);
+                grid.appendChild(group);
+            }
+            
+            if (grid.innerHTML === '') {
+                grid.innerHTML = '<div style="text-align: center; color: #999; padding: 20px;">No characters match your search.</div>';
+            }
+        }
+
+        function insertCharacter(char) {
+            const textarea = document.getElementById('historicalInput');
+            const start = textarea.selectionStart;
+            const end = textarea.selectionEnd;
+            const text = textarea.value;
+            
+            textarea.value = text.substring(0, start) + char + text.substring(end);
+            textarea.selectionStart = textarea.selectionEnd = start + char.length;
+            textarea.focus();
+            
+            updateCharCount('historicalInput', 'historicalCount');
+        }
+
+        function filterCharacters() {
+            const filter = document.getElementById('pickerSearch').value;
+            renderCharacterPicker(filter);
+        }
+
+        function togglePicker() {
+            const picker = document.getElementById('characterPicker');
+            const btn = event.target;
+            
+            if (picker.classList.contains('collapsed')) {
+                picker.classList.remove('collapsed');
+                btn.textContent = 'Collapse ▲';
+            } else {
+                picker.classList.add('collapsed');
+                btn.textContent = 'Expand ▼';
+            }
+        }
+
+        async function loadFont() {
+            const btn = document.getElementById('loadFontBtn');
+            const statusEl = document.getElementById('fontStatus');
+            const progressBar = document.getElementById('progressBar');
+            const progressFill = document.getElementById('progressFill');
+            const loadStatus = document.getElementById('fontLoadStatus');
+            
+            btn.disabled = true;
+            btn.textContent = '⏳ Loading font...';
+            statusEl.textContent = 'Loading...';
+            statusEl.className = 'status loading';
+            progressBar.classList.add('active');
+            
+            try {
+                let progress = 0;
+                const progressInterval = setInterval(() => {
+                    progress += 5;
+                    if (progress >= 90) clearInterval(progressInterval);
+                    progressFill.style.width = progress + '%';
+                    loadStatus.textContent = `Loading... ${progress}%`;
+                }, 100);
+
+                // Try system-installed font first, then load from local server
+                const font = new FontFace(
+                    'IPAmj Mincho',
+                    'local("IPAmj Mincho"), local("IPAmjMincho"), local("ipamjm"), url(ipamjm.ttf)'
+                );
+                await font.load();
+                document.fonts.add(font);
+                
+                clearInterval(progressInterval);
+                progressFill.style.width = '100%';
+                loadStatus.textContent = 'Font loaded successfully! ✓';
+                
+                document.getElementById('historicalInput').classList.add('font-loaded');
+                
+                setTimeout(() => {
+                    statusEl.textContent = 'Font loaded ✓';
+                    statusEl.className = 'status ready';
+                    document.getElementById('fontWarning').style.display = 'none';
+                    btn.textContent = '✓ Font Loaded';
+                }, 500);
+                
+            } catch (error) {
+                console.error('Font loading failed:', error);
+                statusEl.textContent = 'Load failed';
+                statusEl.className = 'status error';
+                loadStatus.textContent = 'Failed to load font. Please refresh and try again.';
+                btn.disabled = false;
+                btn.textContent = '🔄 Retry Loading Font';
+            }
+        }
+
+        function convertText() {
+            let output = document.getElementById('historicalInput').value;
+            for (const [h, m] of Object.entries(hentaiganaMap)) output = output.split(h).join(m);
+            for (const [h, m] of Object.entries(historicalKanaMap)) output = output.split(h).join(m);
+            document.getElementById('modernOutput').value = output;
+            updateCharCount('modernOutput', 'modernCount');
+        }
+
+        function clearAll() {
+            document.getElementById('historicalInput').value = '';
+            document.getElementById('modernOutput').value = '';
+            updateCharCount('historicalInput', 'historicalCount');
+            updateCharCount('modernOutput', 'modernCount');
+        }
+
+        function swapTexts() {
+            const h = document.getElementById('historicalInput').value;
+            const m = document.getElementById('modernOutput').value;
+            document.getElementById('historicalInput').value = m;
+            document.getElementById('modernOutput').value = h;
+            updateCharCount('historicalInput', 'historicalCount');
+            updateCharCount('modernOutput', 'modernCount');
+        }
+
+        function downloadBoth() {
+            const h = document.getElementById('historicalInput').value;
+            const m = document.getElementById('modernOutput').value;
+            const text = `=== Historical Text ===\n\n${h}\n\n\n=== Modern Japanese ===\n\n${m}`;
+            const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'transcription_' + new Date().toISOString().slice(0,10) + '.txt';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function copyToClipboard(id) {
+            const el = document.getElementById(id);
+            el.select();
+            document.execCommand('copy');
+            const btn = event.target;
+            const orig = btn.textContent;
+            btn.textContent = '✓ Copied!';
+            btn.style.background = '#28a745';
+            setTimeout(() => {
+                btn.textContent = orig;
+                btn.style.background = '';
+            }, 2000);
+        }
+
+        function updateCharCount(textareaId, countId) {
+            const count = document.getElementById(textareaId).value.length;
+            document.getElementById(countId).textContent = `${count} character${count !== 1 ? 's' : ''}`;
+        }
+    </script>
+</body>
+</html>
