@@ -352,7 +352,7 @@
     <div class="container">
         <div class="header">
             <h1>📜 Historical Japanese Transcription Tool</h1>
-            <p>Convert manuscripts with variant kana (変体仮名) to modern Japanese orthography</p>
+            <p>Convert texts with variant kana (変体仮名) to modern Japanese orthography. Great for transcribing old manuscripts!</p>
         </div>
 
         <div class="content">
@@ -379,7 +379,7 @@
             <div class="controls">
                 <button class="btn btn-primary" onclick="convertText()">🔄 Convert to Modern Japanese</button>
                 <button class="btn btn-secondary" onclick="clearAll()">🗑️ Clear All</button>
-                <button class="btn btn-secondary" onclick="swapTexts()">⇄ Swap</button>
+                <!--<button class="btn btn-secondary" onclick="swapTexts()">⇄ Swap</button></div>-->
                 <button class="btn btn-secondary" onclick="downloadBoth()">💾 Download Both</button>
             </div>
 
@@ -741,14 +741,14 @@
             updateCharCount('modernOutput', 'modernCount');
         }
 
-        function swapTexts() {
-            const h = document.getElementById('historicalInput').value;
-            const m = document.getElementById('modernOutput').value;
-            document.getElementById('historicalInput').value = m;
-            document.getElementById('modernOutput').value = h;
-            updateCharCount('historicalInput', 'historicalCount');
-            updateCharCount('modernOutput', 'modernCount');
-        }
+        //function swapTexts() {
+          //  const h = document.getElementById('historicalInput').value;
+          //  const m = document.getElementById('modernOutput').value;
+          //  document.getElementById('historicalInput').value = m;
+          //  document.getElementById('modernOutput').value = h;
+          //  updateCharCount('historicalInput', 'historicalCount');
+          //  updateCharCount('modernOutput', 'modernCount');
+        // }
 
         function downloadBoth() {
             const h = document.getElementById('historicalInput').value;
