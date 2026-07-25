@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tekagami Collection - Search & Browse</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+            background: linear-gradient(135deg, #f5f3f0 0%, #e8e4df 100%);
+            color: #2c2c2c;
+            line-height: 1.6;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .site-title {
+            font-size: 1.8rem;
+            font-weight: 300;
+            letter-spacing: 0.05em;
+        }
+        
+        .lang-toggle {
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.2);
+            padding: 0.3rem;
+            border-radius: 20px;
+        }
+        
+        .lang-btn {
+            padding: 0.4rem 1rem;
+            border: none;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            border-radius: 15px;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        .lang-btn.active {
+            background: white;
+            color: #8b4513;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .search-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+        }
+        
+        .search-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .search-title {
+            font-size: 1.3rem;
+            color: #8b4513;
+            font-weight: 500;
+        }
+        
+        .search-mode {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .mode-btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid #d4af37;
+            background: white;
+            color: #8b4513;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        .mode-btn.active {
+            background: #d4af37;
+            color: white;
+        }
+        
+        .search-bar {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 1rem 3rem 1rem 1rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: #d4af37;
+            box-shadow: 0 0 0 3px rgba(212,175,55,0.1);
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+        }
+        
+        .autocomplete {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 2px solid #d4af37;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 10;
+            display: none;
+        }
+        
+        .autocomplete.show {
+            display: block;
+        }
+        
+        .autocomplete-item {
+            padding: 0.8rem 1rem;
+            cursor: pointer;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background 0.2s;
+        }
+        
+        .autocomplete-item:hover {
+            background: #f9f9f9;
+        }
+        
+        .autocomplete-category {
+            font-size: 0.75rem;
+            color: #999;
+            text-transform: uppercase;
+            margin-bottom: 0.2rem;
+        }
+        
+        .autocomplete-text {
+            font-weight: 500;
+        }
+        
+        .autocomplete-subtext {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .filters-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .filter-group {
+            background: #fafafa;
+            border: 2px solid #e8e8e8;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .filter-header {
+            padding: 1rem;
+            background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+        
+        .filter-header:hover {
+            background: linear-gradient(135deg, #9b5523 0%, #b0623d 100%);
+        }
+        
+        .filter-title {
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        
+        .filter-count {
+            background: rgba(255,255,255,0.3);
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+        }
+        
+        .filter-content {
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+        
+        .filter-content.collapsed {
+            display: none;
+        }
+        
+        .filter-item {
+            padding: 0.6rem;
+            margin-bottom: 0.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        
+        .filter-item:hover {
+            background: #f0f0f0;
+        }
+        
+        .filter-item.selected {
+            background: #fff3e0;
+            border-left: 3px solid #d4af37;
+        }
+        
+        .checkbox {
+            width: 18px;
+            height: 18px;
+            border: 2px solid #999;
+            border-radius: 3px;
+            flex-shrink: 0;
+            position: relative;
+        }
+        
+        .filter-item.selected .checkbox {
+            background: #d4af37;
+            border-color: #d4af37;
+        }
+        
+        .filter-item.selected .checkbox::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 0.8rem;
+        }
+        
+        .filter-label {
+            flex: 1;
+        }
+        
+        .filter-label-main {
+            font-size: 0.9rem;
+            color: #2c2c2c;
+        }
+        
+        .filter-label-sub {
+            font-size: 0.8rem;
+            color: #666;
+        }
+        
+        .nested-filters {
+            margin-left: 2rem;
+            margin-top: 0.5rem;
+        }
+        
+        .expand-btn {
+            color: #8b4513;
+            font-size: 0.8rem;
+            padding: 0.3rem 0.6rem;
+            border: 1px solid #d4af37;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 0.5rem;
+        }
+        
+        .active-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .filter-chip {
+            background: #d4af37;
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .chip-remove {
+            cursor: pointer;
+            font-weight: bold;
+            opacity: 0.8;
+        }
+        
+        .chip-remove:hover {
+            opacity: 1;
+        }
+        
+        .results-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .results-info {
+            font-size: 1.1rem;
+            color: #666;
+        }
+        
+        .results-count {
+            color: #8b4513;
+            font-weight: 600;
+        }
+        
+        .sort-dropdown {
+            padding: 0.5rem 1rem;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            background: white;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .result-card {
+            background: #fafafa;
+            border: 2px solid #e8e8e8;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .result-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border-color: #d4af37;
+        }
+        
+        .result-image {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, #f5f1e8 0%, #e8dcc8 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        .result-content {
+            padding: 1rem;
+        }
+        
+        .result-id {
+            font-size: 0.8rem;
+            color: #999;
+            margin-bottom: 0.3rem;
+        }
+        
+        .result-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #2c2c2c;
+        }
+        
+        .result-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem;
+            margin-top: 0.5rem;
+        }
+        
+        .result-tag {
+            background: #e8e4df;
+            color: #666;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+        }
+        
+        .result-tag.highlight {
+            background: #fff3e0;
+            color: #d4af37;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 1024px) {
+            .filters-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .results-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <h1 class="site-title" id="siteTitle">Tekagami Collection</h1>
+            <div class="lang-toggle">
+                <button class="lang-btn active" onclick="switchLang('en')">English</button>
+                <button class="lang-btn" onclick="switchLang('ja')">日本語</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="search-section">
+            <div class="search-header">
+                <h2 class="search-title" id="searchTitle">Search & Browse Fragments</h2>
+                <div class="search-mode">
+                    <button class="mode-btn active" onclick="setMode('simple')">Simple</button>
+                    <button class="mode-btn" onclick="setMode('advanced')">Advanced</button>
+                </div>
+            </div>
+            
+            <div class="search-bar">
+                <input type="text" class="search-input" id="searchInput" placeholder="Search by text, appraiser, or tag..." oninput="showAutocomplete(this.value)">
+                <span class="search-icon">🔍</span>
+                <div class="autocomplete" id="autocomplete">
+                    <div class="autocomplete-item" onclick="selectTag('源氏物語')">
+                        <div class="autocomplete-category">Source Text</div>
+                        <div class="autocomplete-text">源氏物語 / Genjimonogatari</div>
+                        <div class="autocomplete-subtext">Tale of Genji (text excerpts)</div>
+                    </div>
+                    <div class="autocomplete-item" onclick="selectTag('源氏物語系図')">
+                        <div class="autocomplete-category">Commentary</div>
+                        <div class="autocomplete-text">源氏物語系図 / Genjimonogatari-keizu</div>
+                        <div class="autocomplete-subtext">Tale of Genji lineage chart</div>
+                    </div>
+                    <div class="autocomplete-item" onclick="selectTag('indigo')">
+                        <div class="autocomplete-category">Paper Decoration</div>
+                        <div class="autocomplete-text">藍 / Indigo</div>
+                        <div class="autocomplete-subtext">All indigo-related decorations (7 variants)</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="filters-section">
+                <div class="filter-group">
+                    <div class="filter-header" onclick="toggleFilter(this)">
+                        <span class="filter-title" id="filter1Title">鑑定家・鑑定印 / Appraiser & Seals</span>
+                        <span class="filter-count">12</span>
+                    </div>
+                    <div class="filter-content">
+                        <div class="filter-item" onclick="toggleSelection(this)">
+                            <div class="checkbox"></div>
+                            <div class="filter-label">
+                                <div class="filter-label-main">初代朝倉茂入</div>
+                                <div class="filter-label-sub">1st gen. Asakura Mo'nyū</div>
+                            </div>
+                        </div>
+                        <div class="filter-item" onclick="toggleSelection(this)">
+                            <div class="checkbox"></div>
+                            <div class="filter-label">
+                                <div class="filter-label-main">二代古筆了栄</div>
+                                <div class="filter-label-sub">2nd gen. Kohitsu Ryōei</div>
+                            </div>
+                        </div>
+                        <div class="filter-item" onclick="toggleSelection(this)">
+                            <div class="checkbox"></div>
+                            <div class="filter-label">
+                                <div class="filter-label-main">六代古筆了音</div>
+                                <div class="filter-label-sub">6th gen. Kohitsu Ryōon</div>
+                            </div>
+                        </div>
+                        <div class="filter-item" onclick="toggleSelection(this)">
+                            <div class="checkbox"></div>
+                            <div class="filter-label">
+                                <div class="filter-label-main">未詳鑑定家</div>
+                                <div class="filter-label-sub">Unidentified Appraiser</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="filter-group">
+                    <div class="filter-header" onclick="toggleFilter(this)">
+                        <span class="filter-title" id="filter2Title">料紙の種類 / Paper Types</span>
+                        <span class="filter-count">45</span>
+                    </div>
+                    <div class="filter-content">
+                        <div class="filter-item" onclick="toggleSelection(this)">
+                            <div class="checkbox"></div>
+                            <div class="filter-label">
+                                <div class="filter-label-main">装飾料紙</div>
+                                <div class="filter-label-sub">Decorated paper (all types)</div>
+                            </div>
+                        </div>
+                        <div class="filter-item selected" onclick="toggleSelection(this)">
+                            <div class="checkbox"></div>
+                            <div class="filter-label">
+                                <div class="filter-label-main">藍 (すべて)</div>
+                                <div class="filter-label-sub">Indigo (all variants)</div>
+                            </div>
+                        </div>
+                        <div class="nested-filters">
+                            <div class="filter-item" onclick="toggleSelection(this)">
+                                <div class="checkbox"></div>
+                                <div class="filter-label">
+                                    <div class="filter-label-main">藍打曇</div>
+                                    <div class="filter-label-sub">Indigo top-bottom clouds</div>
+                                </div>
+                            </div>
+                            <div class="filter-item" onclick="toggleSelection(this)">
+                                <div class="checkbox"></div>
+                                <div class="filter-label">
+                                    <div class="filter-label-main">藍染紙</div>
+                                    <div class="filter-label-sub">Indigo-dyed paper</div>
+                                </div>
+                            </div>
+                            <div class="filter-item" onclick="toggleSelection(this)">
+                                <div class="checkbox"></div>
+                                <div class="filter-label">
+                                    <div class="filter-label-main">紺紙</div>
+                                    <div class="filter-label-sub">Indigo paper</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="filter-item" onclick="toggleSelection(this)">
+                            <div class="checkbox"></div>
+                            <div class="filter-label">
+                                <div class="filter-label-main">打曇</div>
+                                <div class="filter-label-sub">Uchigumo (clouds)</div>
+                            </div>
+                        </div>
+                        <div class="filter-item" onclick="toggleSelection(this)">
+                            <div class="checkbox"></div>
+                            <div class="filter-label">
+                                <div class="filter-label-main">龍欄文</div>
+                                <div class="filter-label-sub">Dragon banner motif</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="filter-group">
+                    <div class="filter-header" onclick="toggleFilter(this)">
+                        <span class="filter-title" id="filter3Title">出典・内容 / Source Text & Content</span>
+                        <span class="filter-count">78</span>
+                    </div>
+                    <div class="filter-content">
+                        <div class="filter-item selected" onclick="toggleSelection(this)">
+                            <div class="checkbox"></div>
+                            <div class="filter-label">
+                                <div class="filter-label-main">韻文</div>
+                                <div class="filter-label-sub">Verse</div>
+                            </div>
+                        </div>
+                        <div class="nested-filters">
+                            <div class="filter-item selected" onclick="toggleSelection(this)">
+                                <div class="checkbox"></div>
+                                <div class="filter-label">
+                                    <div class="filter-label-main">勅撰集</div>
+                                    <div class="filter-label-sub">Imperial anthologies</div>
+                                </div>
+                            </div>
+                            <div class="nested-filters">
+                                <div class="filter-item" onclick="toggleSelection(this)">
+                                    <div class="checkbox"></div>
+                                    <div class="filter-label">
+                                        <div class="filter-label-main">古今和歌集</div>
+                                        <div class="filter-label-sub">Kokinwakashū</div>
+                                    </div>
+                                </div>
+                                <div class="filter-item" onclick="toggleSelection(this)">
+                                    <div class="checkbox"></div>
+                                    <div class="filter-label">
+                                        <div class="filter-label-main">新古今和歌集</div>
+                                        <div class="filter-label-sub">Shinkokinwakashū</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="filter-item" onclick="toggleSelection(this)">
+                            <div class="checkbox"></div>
+                            <div class="filter-label">
+                                <div class="filter-label-main">散文</div>
+                                <div class="filter-label-sub">Prose</div>
+                            </div>
+                        </div>
+                        <div class="filter-item" onclick="toggleSelection(this)">
+                            <div class="checkbox"></div>
+                            <div class="filter-label">
+                                <div class="filter-label-main">経典</div>
+                                <div class="filter-label-sub">Sutra</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="filter-group">
+                    <div class="filter-header" onclick="toggleFilter(this)">
+                        <span class="filter-title" id="filter4Title">伝筆者 / Attributed Calligrapher</span>
+                        <span class="filter-count">135</span>
+                    </div>
+                    <div class="filter-content">
+                        <div class="filter-item" onclick="toggleSelection(this)">
+                            <div class="checkbox"></div>
+                            <div class="filter-label">
+                                <div class="filter-label-main">後鳥羽院</div>
+                                <div class="filter-label-sub">Retired Emperor Go-toba</div>
+                            </div>
+                        </div>
+                        <div class="filter-item" onclick="toggleSelection(this)">
+                            <div class="checkbox"></div>
+                            <div class="filter-label">
+                                <div class="filter-label-main">後深草院</div>
+                                <div class="filter-label-sub">Retired Emperor Go-Fukakusa</div>
+                            </div>
+                        </div>
+                        <div class="filter-item" onclick="toggleSelection(this)">
+                            <div class="checkbox"></div>
+                            <div class="filter-label">
+                                <div class="filter-label-main">聖武天皇</div>
+                                <div class="filter-label-sub">Emperor Shōmu</div>
+                            </div>
+                        </div>
+                        <div class="filter-item" onclick="toggleSelection(this)">
+                            <div class="checkbox"></div>
+                            <div class="filter-label">
+                                <div class="filter-label-main">宗尊親王</div>
+                                <div class="filter-label-sub">Prince Munetaka</div>
+                            </div>
+                        </div>
+                        <div class="filter-item" onclick="toggleSelection(this)">
+                            <div class="checkbox"></div>
+                            <div class="filter-label">
+                                <div class="filter-label-main">聖徳太子</div>
+                                <div class="filter-label-sub">Prince Shōtoku</div>
+                            </div>
+                        </div>
+                        <div class="filter-item" onclick="toggleSelection(this)">
+                            <div class="checkbox"></div>
+                            <div class="filter-label">
+                                <div class="filter-label-main">近衛道嗣</div>
+                                <div class="filter-label-sub">Konoe Michitsugu</div>
+                            </div>
+                        </div>
+                        <div class="filter-item" onclick="toggleSelection(this)">
+                            <div class="checkbox"></div>
+                            <div class="filter-label">
+                                <div class="filter-label-main">近衛政家</div>
+                                <div class="filter-label-sub">Konoe Masaie</div>
+                            </div>
+                        </div>
+                        <div class="filter-item" onclick="toggleSelection(this)">
+                            <div class="checkbox"></div>
+                            <div class="filter-label">
+                                <div class="filter-label-main">近衛尚通</div>
+                                <div class="filter-label-sub">Konoe Hisamichi</div>
+                            </div>
+                        </div>
+                        <div class="filter-item" onclick="toggleSelection(this)">
+                            <div class="checkbox"></div>
+                            <div class="filter-label">
+                                <div class="filter-label-main">九条道家</div>
+                                <div class="filter-label-sub">Kujō Michiie</div>
+                            </div>
+                        </div>
+                        <div class="filter-item" onclick="toggleSelection(this)">
+                            <div class="checkbox"></div>
+                            <div class="filter-label">
+                                <div class="filter-label-main">藤原定家</div>
+                                <div class="filter-label-sub">Fujiwara Teika</div>
+                            </div>
+                        </div>
+                        <div class="filter-item" onclick="toggleSelection(this)">
+                            <div class="checkbox"></div>
+                            <div class="filter-label">
+                                <div class="filter-label-main">藤原俊成</div>
+                                <div class="filter-label-sub">Fujiwara Shunzei</div>
+                            </div>
+                        </div>
+                        <div class="filter-item" onclick="toggleSelection(this)">
+                            <div class="checkbox"></div>
+                            <div class="filter-label">
+                                <div class="filter-label-main">阿仏尼</div>
+                                <div class="filter-label-sub">Nun Abutsu</div>
+                            </div>
+                        </div>
+                        <div class="filter-item" onclick="toggleSelection(this)">
+                            <div class="checkbox"></div>
+                            <div class="filter-label">
+                                <div class="filter-label-main">日野俊光</div>
+                                <div class="filter-label-sub">Hino Toshimitsu</div>
+                            </div>
+                        </div>
+                        <div class="filter-item" onclick="toggleSelection(this)">
+                            <div class="checkbox"></div>
+                            <div class="filter-label">
+                                <div class="filter-label-main">正広</div>
+                                <div class="filter-label-sub">Shōkō</div>
+                            </div>
+                        </div>
+                        <div class="filter-item" onclick="toggleSelection(this)">
+                            <div class="checkbox"></div>
+                            <div class="filter-label">
+                                <div class="filter-label-main">肖柏</div>
+                                <div class="filter-label-sub">Shōhaku</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="filter-group">
+                    <div class="filter-header" onclick="toggleFilter(this)">
+                        <span class="filter-title" id="filter5Title">時代 / Date</span>
+                        <span class="filter-count">8</span>
+                    </div>
+                    <div class="filter-content">
+                        <div class="filter-item" onclick="toggleSelection(this)">
+                            <div class="checkbox"></div>
+                            <div class="filter-label">
+                                <div class="filter-label-main">奈良時代</div>
+                                <div class="filter-label-sub">Nara Period</div>
+                            </div>
+                        </div>
+                        <div class="filter-item" onclick="toggleSelection(this)">
+                            <div class="checkbox"></div>
+                            <div class="filter-label">
+                                <div class="filter-label-main">平安時代</div>
+                                <div class="filter-label-sub">Heian Period</div>
+                            </div>
+                        </div>
+                        <div class="filter-item" onclick="toggleSelection(this)">
+                            <div class="checkbox"></div>
+                            <div class="filter-label">
+                                <div class="filter-label-main">鎌倉時代</div>
+                                <div class="filter-label-sub">Kamakura Period</div>
+                            </div>
+                        </div>
+                        <div class="filter-item" onclick="toggleSelection(this)">
+                            <div class="checkbox"></div>
+                            <div class="filter-label">
+                                <div class="filter-label-main">南北朝時代</div>
+                                <div class="filter-label-sub">Nambokucho Period</div>
+                            </div>
+                        </div>
+                        <div class="filter-item" onclick="toggleSelection(this)">
+                            <div class="checkbox"></div>
+                            <div class="filter-label">
+                                <div class="filter-label-main">室町時代</div>
+                                <div class="filter-label-sub">Muromachi Period</div>
+                            </div>
+                        </div>
+                        <div class="filter-item" onclick="toggleSelection(this)">
+                            <div class="checkbox"></div>
+                            <div class="filter-label">
+                                <div class="filter-label-main">桃山時代</div>
+                                <div class="filter-label-sub">Momoyama Period</div>
+                            </div>
+                        </div>
+                        <div class="filter-item" onclick="toggleSelection(this)">
+                            <div class="checkbox"></div>
+                            <div class="filter-label">
+                                <div class="filter-label-main">江戸時代</div>
+                                <div class="filter-label-sub">Edo Period</div>
+                            </div>
+                        </div>
+                        <div class="filter-item" onclick="toggleSelection(this)">
+                            <div class="checkbox"></div>
+                            <div class="filter-label">
+                                <div class="filter-label-main">明治時代</div>
+                                <div class="filter-label-sub">Meiji Period</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="active-filters" id="activeFilters">
+                <div class="filter-chip">
+                    <span>韻文 > 勅撰集 / Verse > Imperial anthology</span>
+                    <span class="chip-remove" onclick="removeFilter(this)">×</span>
+                </div>
+                <div class="filter-chip">
+                    <span>藍 / Indigo (all)</span>
+                    <span class="chip-remove" onclick="removeFilter(this)">×</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="results-section">
+            <div class="results-header">
+                <div class="results-info">
+                    <span id="resultsText">Showing</span> <span class="results-count">7</span> <span id="fragmentsText">fragments</span>
+                </div>
+                <select class="sort-dropdown" id="sortDropdown">
+                    <option>Sort by relevance</option>
+                    <option>Sort by fragment number</option>
+                    <option>Sort by source text</option>
+                    <option>Sort by date/period</option>
+                </select>
+            </div>
+            
+            <div class="results-grid">
+                <div class="result-card">
+                    <div class="result-image">Fragment Preview</div>
+                    <div class="result-content">
+                        <div class="result-id">Fragment #042</div>
+                        <div class="result-title">古今和歌集 / Kokinwakashū</div>
+                        <div class="result-tags">
+                            <span class="result-tag highlight">韻文 / Verse</span>
+                            <span class="result-tag highlight">勅撰集 / Imperial</span>
+                            <span class="result-tag highlight">藍打曇 / Indigo clouds</span>
+                            <span class="result-tag">藤原定家 / Fujiwara Teika</span>
+                            <span class="result-tag">鎌倉時代 / Kamakura</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-image">Fragment Preview</div>
+                    <div class="result-content">
+                        <div class="result-id">Fragment #067</div>
+                        <div class="result-title">新古今和歌集 / Shinkokinwakashū</div>
+                        <div class="result-tags">
+                            <span class="result-tag highlight">韻文 / Verse</span>
+                            <span class="result-tag highlight">勅撰集 / Imperial</span>
+                            <span class="result-tag highlight">紺紙 / Indigo paper</span>
+                            <span class="result-tag">後鳥羽院 / Emperor Go-toba</span>
+                            <span class="result-tag">鎌倉時代 / Kamakura</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-image">Fragment Preview</div>
+                    <div class="result-content">
+                        <div class="result-id">Fragment #089</div>
+                        <div class="result-title">千載和歌集 / Senzaiwakashū</div>
+                        <div class="result-tags">
+                            <span class="result-tag highlight">韻文 / Verse</span>
+                            <span class="result-tag highlight">勅撰集 / Imperial</span>
+                            <span class="result-tag highlight">藍染紙 / Indigo-dyed</span>
+                            <span class="result-tag">藤原俊成 / Fujiwara Shunzei</span>
+                            <span class="result-tag">平安時代 / Heian</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-image">Fragment Preview</div>
+                    <div class="result-content">
+                        <div class="result-id">Fragment #103</div>
+                        <div class="result-title">続古今和歌集 / Shoku-kokinwakashū</div>
+                        <div class="result-tags">
+                            <span class="result-tag highlight">韻文 / Verse</span>
+                            <span class="result-tag highlight">勅撰集 / Imperial</span>
+                            <span class="result-tag highlight">藍白地 / Indigo-white</span>
+                            <span class="result-tag">近衛政家 / Konoe Masaie</span>
+                            <span class="result-tag">室町時代 / Muromachi</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-image">Fragment Preview</div>
+                    <div class="result-content">
+                        <div class="result-id">Fragment #118</div>
+                        <div class="result-title">玉葉和歌集 / Gyokuyōwakashū</div>
+                        <div class="result-tags">
+                            <span class="result-tag highlight">韻文 / Verse</span>
+                            <span class="result-tag highlight">勅撰集 / Imperial</span>
+                            <span class="result-tag highlight">藍色繊維 / Indigo fiber</span>
+                            <span class="result-tag">阿仏尼 / Nun Abutsu</span>
+                            <span class="result-tag">鎌倉時代 / Kamakura</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-image">Fragment Preview</div>
+                    <div class="result-content">
+                        <div class="result-id">Fragment #124</div>
+                        <div class="result-title">後撰和歌集 / Gosenwakashū</div>
+                        <div class="result-tags">
+                            <span class="result-tag highlight">韻文 / Verse</span>
+                            <span class="result-tag highlight">勅撰集 / Imperial</span>
+                            <span class="result-tag highlight">藍紫打曇 / Indigo-purple</span>
+                            <span class="result-tag">宗尊親王 / Prince Munetaka</span>
+                            <span class="result-tag">鎌倉時代 / Kamakura</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-image">Fragment Preview</div>
+                    <div class="result-content">
+                        <div class="result-id">Fragment #131</div>
+                        <div class="result-title">金葉和歌集 / Kin'yōwakashū</div>
+                        <div class="result-tags">
+                            <span class="result-tag highlight">韻文 / Verse</span>
+                            <span class="result-tag highlight">勅撰集 / Imperial</span>
+                            <span class="result-tag highlight">藍打曇 / Indigo clouds</span>
+                            <span class="result-tag">肖柏 / Shōhaku</span>
+                            <span class="result-tag">室町時代 / Muromachi</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let currentLang = 'en';
+        
+        const translations = {
+            en: {
+                siteTitle: 'Tekagami Collection',
+                searchTitle: 'Search & Browse Fragments',
+                searchPlaceholder: 'Search by text, appraiser, or tag...',
+                filter1Title: '鑑定家・鑑定印 / Appraiser & Seals',
+                filter2Title: '料紙の種類 / Paper Types',
+                filter3Title: '出典・内容 / Source Text & Content',
+                filter4Title: '伝筆者 / Attributed Calligrapher',
+                filter5Title: '時代 / Date',
+                resultsText: 'Showing',
+                fragmentsText: 'fragments',
+                sortOptions: [
+                    'Sort by relevance',
+                    'Sort by fragment number',
+                    'Sort by source text',
+                    'Sort by date/period'
+                ]
+            },
+            ja: {
+                siteTitle: '手鑑コレクション',
+                searchTitle: '断簡の検索・閲覧',
+                searchPlaceholder: 'テキスト、鑑定家、またはタグで検索...',
+                filter1Title: '鑑定家・鑑定印',
+                filter2Title: '料紙の種類',
+                filter3Title: '出典・内容',
+                filter4Title: '伝筆者',
+                filter5Title: '時代',
+                resultsText: '表示中',
+                fragmentsText: '断簡',
+                sortOptions: [
+                    '関連性順',
+                    '断簡番号順',
+                    '出典順',
+                    '時代順'
+                ]
+            }
+        };
+        
+        function switchLang(lang) {
+            currentLang = lang;
+            
+            // Update button states
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Update text content
+            document.getElementById('siteTitle').textContent = translations[lang].siteTitle;
+            document.getElementById('searchTitle').textContent = translations[lang].searchTitle;
+            document.getElementById('searchInput').placeholder = translations[lang].searchPlaceholder;
+            document.getElementById('resultsText').textContent = translations[lang].resultsText;
+            document.getElementById('fragmentsText').textContent = translations[lang].fragmentsText;
+            
+            // Update sort dropdown
+            const sortDropdown = document.getElementById('sortDropdown');
+            sortDropdown.innerHTML = translations[lang].sortOptions.map(opt => 
+                `<option>${opt}</option>`
+            ).join('');
+        }
+        
+        function setMode(mode) {
+            document.querySelectorAll('.mode-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+        
+        function toggleFilter(header) {
+            const content = header.nextElementSibling;
+            content.classList.toggle('collapsed');
+        }
+        
+        function toggleSelection(item) {
+            item.classList.toggle('selected');
+            updateActiveFilters();
+        }
+        
+        function updateActiveFilters() {
+            // This would dynamically update the active filters section
+            // based on selected items in the real implementation
+        }
+        
+        function removeFilter(chip) {
+            chip.parentElement.remove();
+            // In real implementation, would also uncheck the corresponding filter
+        }
+        
+        let autocompleteTimeout;
+        function showAutocomplete(value) {
+            clearTimeout(autocompleteTimeout);
+            const autocomplete = document.getElementById('autocomplete');
+            
+            if (value.length > 1) {
+                autocompleteTimeout = setTimeout(() => {
+                    autocomplete.classList.add('show');
+                }, 300);
+            } else {
+                autocomplete.classList.remove('show');
+            }
+        }
+        
+        function selectTag(tag) {
+            document.getElementById('searchInput').value = tag;
+            document.getElementById('autocomplete').classList.remove('show');
+            // In real implementation, would trigger search
+        }
+        
+        // Hide autocomplete when clicking outside
+        document.addEventListener('click', function(event) {
+            const searchBar = document.querySelector('.search-bar');
+            const autocomplete = document.getElementById('autocomplete');
+            if (!searchBar.contains(event.target)) {
+                autocomplete.classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>
