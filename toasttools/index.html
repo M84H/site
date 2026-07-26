@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Lectern — Toastmasters Timer & Ah-Counter</title>
+<style>
+  :root{
+    --ink:#14161a;
+    --paper:#f6f4ef;
+    --gold:#b8912f;
+    --gold-soft:#e9d9ad;
+    --line: rgba(20,22,26,0.12);
+    --neutral-bg: var(--paper);
+    --neutral-fg: var(--ink);
+    --green:#1f7a4d;
+    --green-fg:#eafff1;
+    --yellow:#d1a017;
+    --yellow-fg:#241a00;
+    --red:#a32424;
+    --red-fg:#fff0ee;
+    --purple:#5b2a86;
+    --purple-fg:#f6ecff;
+    --radius: 18px;
+    --mono: "SF Mono","JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif;
+  }
+
+  *{ box-sizing:border-box; }
+  html,body{ height:100%; }
+  body{
+    margin:0;
+    font-family: var(--sans);
+    background: var(--neutral-bg);
+    color: var(--neutral-fg);
+    min-height:100dvh;
+    display:flex;
+    flex-direction:column;
+    transition: background-color .35s ease, color .35s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  header.top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--line);
+    flex-shrink:0;
+  }
+  .brand{ display:flex; align-items:baseline; gap:8px; }
+  .brand .mark{ width:10px; height:10px; border-radius:50%; background: var(--gold); display:inline-block; }
+  .brand h1{ font-size:16px; letter-spacing:0.02em; margin:0; font-weight:700; }
+  .brand small{ font-size:11px; opacity:0.55; font-weight:500; letter-spacing:0.03em; text-transform:uppercase; }
+
+  nav.tabs{ display:flex; gap:4px; background: rgba(20,22,26,0.06); padding:4px; border-radius:999px; }
+  nav.tabs button{
+    border:none; background:transparent; padding:8px 16px; font-size:13px; font-weight:600;
+    border-radius:999px; cursor:pointer; color:inherit; opacity:0.55; transition: all .2s ease; font-family:inherit;
+  }
+  nav.tabs button.active{ background: var(--ink); color: var(--paper); opacity:1; }
+  body.mode-ahcounter nav.tabs button.active{ background: var(--gold); color:#1a1300; }
+
+  main{ flex:1; display:flex; flex-direction:column; min-height:0; }
+
+  #timerMode, #ahcounterMode{ display:none; flex-direction:column; flex:1; min-height:0; }
+  #timerMode.active, #ahcounterMode.active{ display:flex; }
+
+  .view{ display:none; flex-direction:column; }
+  .view.active{ display:flex; }
+
+  /* ---------- SPEECH SELECT ---------- */
+  #view-select{ padding: 28px 20px 24px; max-width:640px; margin:0 auto; width:100%; }
+  #view-select .lead{ margin-bottom:22px; }
+  #view-select .lead h2{ font-size:22px; margin:0 0 4px; letter-spacing:-0.01em; }
+  #view-select .lead p{ margin:0; font-size:14px; opacity:0.6; }
+  .speech-grid{ display:grid; grid-template-columns: 1fr 1fr; gap:12px; }
+  @media (max-width:420px){ .speech-grid{ grid-template-columns: 1fr; } }
+  .speech-card{
+    text-align:left; border:1px solid var(--line); background: white; border-radius: var(--radius);
+    padding:16px 18px; cursor:pointer; font-family:inherit; color:inherit;
+    transition: transform .15s ease, border-color .15s ease; position:relative;
+  }
+  .speech-card:active{ transform: scale(0.97); }
+  .speech-card .name{ font-weight:700; font-size:15px; display:block; margin-bottom:3px; }
+  .speech-card .range{ font-size:12.5px; opacity:0.55; font-family: var(--mono); }
+  .speech-card.custom{ border-style:dashed; background:transparent; }
+
+  /* ---------- CUSTOM SETUP ---------- */
+  #view-custom{ padding: 28px 20px 24px; max-width:480px; margin:0 auto; width:100%; }
+  .field-row{ display:flex; align-items:center; justify-content:space-between; padding: 14px 0; border-bottom:1px solid var(--line); }
+  .field-row label{ font-size:14px; font-weight:600; display:flex; align-items:center; gap:8px; }
+  .field-row .dot{ width:10px; height:10px; border-radius:50%; }
+  .field-row input{
+    width:90px; text-align:center; font-family: var(--mono); font-size:16px; padding:8px 4px;
+    border:1px solid var(--line); border-radius:10px; background:white; color:inherit;
+  }
+  .back-link{ border:none; background:none; color:inherit; opacity:0.55; font-size:13px; padding:6px 0; margin-bottom:8px; display:flex; align-items:center; gap:4px; cursor:pointer; font-family:inherit; }
+  .primary-btn{ margin-top:24px; width:100%; border:none; background: var(--ink); color: var(--paper); padding:15px; border-radius:14px; font-weight:700; font-size:15px; cursor:pointer; font-family:inherit; }
+
+  /* ---------- TIMER RUN VIEW ---------- */
+  #view-timer{ flex:1; align-items:center; justify-content:space-between; padding: 18px 20px 20px; position:relative; }
+  #view-timer .runtop{ width:100%; display:flex; justify-content:space-between; align-items:center; max-width:520px; }
+  #view-timer .runtop .label{ font-size:13px; font-weight:700; letter-spacing:0.02em; text-transform:uppercase; opacity:0.7; }
+  #view-timer .stage-dots{ display:flex; gap:6px; }
+  #view-timer .stage-dots span{ width:9px;height:9px;border-radius:50%; background: currentColor; opacity:0.18; transition: opacity .25s ease, transform .25s ease; }
+  #view-timer .stage-dots span.hit{ opacity:1; transform:scale(1.15); }
+
+  .name-row{
+    width:100%; max-width:520px; margin-top:10px;
+  }
+  .name-row-label{
+    display:block; font-size:12px; font-weight:700; text-transform:uppercase;
+    letter-spacing:0.03em; opacity:0.6; margin-bottom:5px;
+  }
+  .name-row input{
+    width:100%; padding:12px 14px; border-radius:12px; border:1px solid var(--line);
+    font-size:14px; font-family:inherit; background:rgba(255,255,255,0.85); color:#14161a;
+  }
+
+  .clock{
+    font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: min(20vw, 108px);
+    font-weight:700; letter-spacing:-0.02em; line-height:1; text-align:center;
+  }
+  .threshold-caption{ text-align:center; font-size:13px; opacity:0.6; margin-top:4px; min-height:18px; }
+
+  .dq-badge{
+    display:none; align-items:center; gap:10px; justify-content:center; margin-top:8px;
+    background: rgba(0,0,0,0.18); padding:8px 14px; border-radius:999px;
+  }
+  .dq-badge.show{ display:flex; }
+  .dq-badge img{ width:32px; height:32px; border-radius:6px; object-fit:cover; }
+  .dq-badge span{ font-weight:800; font-size:13px; letter-spacing:0.02em; }
+
+  .controls{ display:flex; gap:10px; width:100%; max-width:520px; flex-wrap:wrap; }
+  .controls button{ flex:1; min-width:90px; padding:15px 10px; border-radius:16px; border:none; font-weight:700; font-size:14px; font-family:inherit; cursor:pointer; }
+  #btnPlayPause{ background: var(--ink); color: var(--paper); }
+  body.state-neutral #btnPlayPause{ background:var(--ink); color:var(--paper); }
+  body.state-green #btnPlayPause, body.state-yellow #btnPlayPause, body.state-red #btnPlayPause, body.state-purple #btnPlayPause{
+    background: rgba(255,255,255,0.92); color: #14161a;
+  }
+  #btnReset{ background: rgba(0,0,0,0.08); color: inherit; }
+  #btnSave{ background: var(--gold); color:#241a00; }
+
+  body.state-green #timerMode, body.state-green header.top{ background:var(--green); color:var(--green-fg); }
+  body.state-yellow #timerMode, body.state-yellow header.top{ background:var(--yellow); color:var(--yellow-fg); }
+  body.state-red #timerMode, body.state-red header.top{ background:var(--red); color:var(--red-fg); }
+  body.state-purple #timerMode, body.state-purple header.top{ background:var(--purple); color:var(--purple-fg); }
+  body.state-green header.top{ border-bottom-color: rgba(255,255,255,0.2); }
+  body.state-yellow header.top{ border-bottom-color: rgba(0,0,0,0.15); }
+  body.state-red header.top{ border-bottom-color: rgba(255,255,255,0.2); }
+  body.state-purple header.top{ border-bottom-color: rgba(255,255,255,0.2); }
+
+  /* ---------- LOG PANELS ---------- */
+  .log-panel{
+    background: white; border-top:1px solid var(--line); color:var(--ink);
+    padding:14px 20px 20px; max-height:34vh; overflow-y:auto; flex-shrink:0;
+  }
+  .log-panel .log-head{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:8px; max-width:640px; margin-left:auto; margin-right:auto; }
+  .log-panel h3{ font-size:13px; margin:0; text-transform:uppercase; letter-spacing:0.04em; opacity:0.7; }
+  .log-panel .paper-note{ font-size:12px; color:var(--gold); font-weight:700; }
+  .log-table{ max-width:640px; margin:0 auto; width:100%; border-collapse:collapse; font-size:13px; }
+  .log-table th{ text-align:left; font-size:11px; text-transform:uppercase; letter-spacing:0.03em; opacity:0.5; padding:4px 8px; font-weight:700; }
+  .log-table td{ padding:7px 8px; border-top:1px solid var(--line); }
+  .log-table tr:first-child td{ border-top:none; }
+  .log-empty{ font-size:13px; opacity:0.45; max-width:640px; margin:6px auto 0; text-align:center; }
+  .dq-flag{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:16px; height:16px; border-radius:50%; background:var(--red); color:#fff;
+    font-size:11px; font-weight:800; line-height:1; vertical-align:middle; margin-left:4px;
+  }
+
+  /* ---------- AH COUNTER ---------- */
+  #view-ahcounter{ padding: 24px 20px 20px; max-width:640px; margin:0 auto; width:100%; flex:1; }
+  .ah-header{ margin-bottom:16px; }
+  .ah-header h2{ font-size:20px; margin:0 0 4px; }
+  .ah-header p{ margin:0; font-size:13px; opacity:0.6; }
+
+  .ah-field{ margin-bottom:12px; }
+  .ah-field label{ display:block; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.03em; opacity:0.55; margin-bottom:6px; }
+  .ah-field input, .ah-field select{
+    width:100%; padding:12px 14px; border-radius:12px; border:1px solid var(--line); font-size:14px; font-family:inherit; background:white; color:inherit;
+  }
+
+  .wod-row{ display:flex; gap:8px; margin-bottom:18px; align-items:flex-end; }
+  .wod-row .ah-field{ flex:1; margin-bottom:0; }
+  .wod-row button{ padding:12px 16px; border-radius:12px; border:none; background:var(--gold); color:#241a00; font-weight:700; font-size:13px; cursor:pointer; height:44px; }
+
+  .tally-grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap:12px; }
+  @media(max-width:420px){ .tally-grid{ grid-template-columns:1fr; } }
+  .tally-card{
+    border:1px solid var(--line); background:white; border-radius:var(--radius); padding:16px 18px;
+    display:flex; align-items:center; justify-content:space-between; cursor:pointer; user-select:none;
+    transition: transform .1s ease, background .15s ease;
+  }
+  .tally-card:active{ transform:scale(0.97); background:var(--gold-soft); }
+  .tally-card .word{ font-weight:700; font-size:15px; }
+  .tally-card .word.wod{ color:var(--gold); }
+  .tally-card .count{ font-family:var(--mono); font-size:26px; font-weight:800; min-width:34px; text-align:right; }
+  .tally-card .remove{ margin-left:8px; opacity:0.35; font-size:16px; padding:2px 6px; }
+
+  .ah-footer{ margin-top:22px; display:flex; gap:12px; }
+  .ah-footer button{ flex:1; padding:14px; border-radius:14px; border:none; font-weight:700; font-size:14px; font-family:inherit; cursor:pointer; }
+  #btnAhReset{ background: rgba(0,0,0,0.08); color: inherit; }
+  #btnAhRegister{ background: var(--ink); color: var(--paper); }
+
+  /* ---------- CUSTOM CONFIRM MODAL ---------- */
+  #confirmOverlay{
+    position:fixed; inset:0; background:rgba(20,22,26,0.55);
+    display:none; align-items:center; justify-content:center; z-index:50; padding:20px;
+  }
+  #confirmOverlay.show{ display:flex; }
+  #confirmBox{
+    background:white; color:var(--ink); border-radius:16px; padding:22px;
+    max-width:340px; width:100%; box-shadow:0 20px 60px rgba(0,0,0,0.3);
+  }
+  #confirmBox p{ margin:0 0 18px; font-size:14px; line-height:1.4; }
+  #confirmBox .confirm-actions{ display:flex; gap:10px; }
+  #confirmBox button{ flex:1; padding:12px; border-radius:12px; border:none; font-weight:700; font-size:13.5px; cursor:pointer; font-family:inherit; }
+  #confirmCancel{ background:rgba(0,0,0,0.08); color:var(--ink); }
+  #confirmOk{ background:var(--ink); color:var(--paper); }
+</style>
+</head>
+<body class="mode-timer state-neutral">
+
+<header class="top">
+  <div class="brand">
+    <span class="mark"></span>
+    <h1>Lectern</h1>
+    <small>Club Roles</small>
+  </div>
+  <nav class="tabs">
+    <button id="tabTimer" class="active" onclick="switchMode('timer')">Timer</button>
+    <button id="tabAh" onclick="switchMode('ahcounter')">Ah-Counter</button>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ================= TIMER MODE ================= -->
+  <div id="timerMode" class="active">
+
+    <section id="view-select" class="view active">
+      <div class="lead">
+        <h2>What's being timed?</h2>
+        <p>Pick a speech type — thresholds are set automatically.</p>
+      </div>
+      <div class="speech-grid" id="speechGrid"></div>
+    </section>
+
+    <section id="view-custom" class="view">
+      <button class="back-link" onclick="showTimerView('select')">← Back</button>
+      <div class="lead">
+        <h2 style="font-size:20px;margin:0 0 4px;">Custom timing</h2>
+        <p style="margin:0;font-size:13px;opacity:0.6;">Enter each threshold as mm:ss.</p>
+      </div>
+      <div class="field-row">
+        <label><span class="dot" style="background:var(--green)"></span>Green at</label>
+        <input id="custGreen" type="text" inputmode="numeric" placeholder="1:00">
+      </div>
+      <div class="field-row">
+        <label><span class="dot" style="background:var(--yellow)"></span>Yellow at</label>
+        <input id="custYellow" type="text" inputmode="numeric" placeholder="1:30">
+      </div>
+      <div class="field-row">
+        <label><span class="dot" style="background:var(--red)"></span>Red at</label>
+        <input id="custRed" type="text" inputmode="numeric" placeholder="2:00">
+      </div>
+      <div class="field-row" style="border-bottom:none;">
+        <label><span class="dot" style="background:var(--purple)"></span>Disqualified at</label>
+        <input id="custPurple" type="text" inputmode="numeric" placeholder="2:30">
+      </div>
+      <button class="primary-btn" onclick="startCustomTimer()">Start timer</button>
+    </section>
+
+    <section id="view-timer" class="view">
+      <div class="runtop">
+        <button class="back-link" style="margin:0;" onclick="stopAndBack()">← End</button>
+        <span class="label" id="runLabel">Table Topics</span>
+        <div class="stage-dots">
+          <span id="dotG" style="color:var(--green)"></span>
+          <span id="dotY" style="color:var(--yellow)"></span>
+          <span id="dotR" style="color:var(--red)"></span>
+          <span id="dotP" style="color:var(--purple)"></span>
+        </div>
+      </div>
+
+      <div class="name-row">
+        <label for="speakerName" class="name-row-label">Name</label>
+        <input id="speakerName" type="text" placeholder="Speaker's name">
+      </div>
+
+      <div>
+        <div class="clock" id="clockDisplay">0:00</div>
+        <div class="threshold-caption" id="captionText">Press start when the speaker begins.</div>
+        <div class="dq-badge" id="dqBadge">
+          <img id="dqImage" src="disqualified.gif" alt=""
+               onerror="this.style.display='none';">
+          <span>Disqualified — timer still running</span>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button id="btnReset" onclick="resetTimer()">Reset</button>
+        <button id="btnSave" onclick="saveTimerEntry()">Stop-Save Time</button>
+        <button id="btnPlayPause" onclick="toggleRun()">Start</button>
+      </div>
+    </section>
+
+    <div class="log-panel">
+      <div class="log-head">
+        <h3>Recorded times</h3>
+        <span class="paper-note">Record it on paper too!</span>
+      </div>
+      <div id="timerLogWrap"></div>
+    </div>
+
+  </div>
+
+  <!-- ================= AH-COUNTER MODE ================= -->
+  <div id="ahcounterMode">
+    <section id="view-ahcounter" class="view active">
+      <div class="ah-header">
+        <h2>Ah-Counter</h2>
+        <p>Tap a word each time it's used.</p>
+      </div>
+
+      <div class="ah-field">
+        <label>Speaker's name</label>
+        <input id="ahName" type="text" placeholder="Speaker's name">
+      </div>
+      <div class="ah-field">
+        <label>Speech</label>
+        <select id="ahSpeech">
+          <option value="">Select speech type…</option>
+          <option>Table Topics</option>
+          <option>Evaluation</option>
+          <option>Icebreaker</option>
+          <option>Prepared Speech</option>
+          <option>Extended Speech</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="wod-row">
+        <div class="ah-field">
+          <label>Word of the day (optional)</label>
+          <input id="wodInput" type="text" placeholder="e.g. Meanwhile">
+        </div>
+        <button onclick="addWordOfDay()">Add</button>
+      </div>
+
+      <div class="tally-grid" id="tallyGrid"></div>
+
+      <div class="ah-footer">
+        <button id="btnAhReset" onclick="resetAhCounter()">Reset</button>
+        <button id="btnAhRegister" onclick="registerAhEntry()">Register</button>
+      </div>
+    </section>
+
+    <div class="log-panel">
+      <div class="log-head">
+        <h3>Registered tallies</h3>
+        <span class="paper-note">Record it on paper too!</span>
+      </div>
+      <div id="ahLogWrap"></div>
+    </div>
+  </div>
+
+</main>
+
+<div id="confirmOverlay">
+  <div id="confirmBox">
+    <p id="confirmMessage">Are you sure?</p>
+    <div class="confirm-actions">
+      <button id="confirmCancel">Cancel</button>
+      <button id="confirmOk">Yes - Reset please</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============ DATA ============ */
+const SPEECHES = [
+  { id:'tabletopics', name:'Table Topics',    range:'1–2 min',  times:[60,90,120,150] },
+  { id:'evaluation',  name:'Evaluation',      range:'2–3 min',  times:[120,150,180,210] },
+  { id:'icebreaker',  name:'Icebreaker',      range:'4–6 min',  times:[240,300,360,390] },
+  { id:'prepared',    name:'Prepared Speech', range:'5–7 min',  times:[300,360,420,450] },
+  { id:'extended',    name:'Extended Speech', range:'8–10 min', times:[480,540,600,630] },
+];
+
+/* ============ SPEECH GRID ============ */
+const grid = document.getElementById('speechGrid');
+SPEECHES.forEach(s => {
+  const card = document.createElement('button');
+  card.className = 'speech-card';
+  card.innerHTML = `<span class="name">${s.name}</span><span class="range">${s.range}</span>`;
+  card.onclick = () => startTimer(s.name, s.times);
+  grid.appendChild(card);
+});
+const customCard = document.createElement('button');
+customCard.className = 'speech-card custom';
+customCard.innerHTML = `<span class="name">Custom</span><span class="range">Set your own times</span>`;
+customCard.onclick = () => showTimerView('custom');
+grid.appendChild(customCard);
+
+/* ============ MODE / VIEW SWITCHING ============ */
+function showTimerView(name){
+  document.querySelectorAll('#timerMode .view').forEach(v => v.classList.remove('active'));
+  document.getElementById('view-' + name).classList.add('active');
+}
+function switchMode(mode){
+  document.getElementById('tabTimer').classList.toggle('active', mode==='timer');
+  document.getElementById('tabAh').classList.toggle('active', mode==='ahcounter');
+  document.body.classList.toggle('mode-ahcounter', mode==='ahcounter');
+  document.getElementById('timerMode').classList.toggle('active', mode==='timer');
+  document.getElementById('ahcounterMode').classList.toggle('active', mode==='ahcounter');
+  if(mode!=='timer'){
+    stopTicking();
+  }
+}
+
+/* ============ CUSTOM TIME PARSING ============ */
+function parseMMSS(str){
+  if(!str) return null;
+  str = str.trim();
+  if(str.includes(':')){
+    const [m,s] = str.split(':').map(Number);
+    if(isNaN(m)||isNaN(s)) return null;
+    return m*60+s;
+  }
+  const n = Number(str);
+  return isNaN(n) ? null : n;
+}
+function startCustomTimer(){
+  const g = parseMMSS(document.getElementById('custGreen').value);
+  const y = parseMMSS(document.getElementById('custYellow').value);
+  const r = parseMMSS(document.getElementById('custRed').value);
+  const p = parseMMSS(document.getElementById('custPurple').value);
+  if([g,y,r,p].some(v => v===null)){
+    alert('Please fill in all four times as mm:ss (e.g. 1:30).');
+    return;
+  }
+  startTimer('Custom', [g,y,r,p]);
+}
+
+/* ============ TIMER ENGINE ============ */
+let thresholds = [60,90,120,150];
+let elapsedMs = 0;
+let startTs = null;
+let running = false;
+let tickHandle = null;
+let dqShown = false;
+const timerLog = [];
+
+function startTimer(label, times){
+  thresholds = times;
+  document.getElementById('runLabel').textContent = label;
+  resetTimer();
+  showTimerView('timer');
+}
+
+function fmt(ms){
+  const totalSec = Math.floor(ms/1000);
+  const m = Math.floor(totalSec/60);
+  const s = totalSec % 60;
+  return m + ':' + String(s).padStart(2,'0');
+}
+
+function currentStage(sec){
+  const [g,y,r,p] = thresholds;
+  if(sec >= p) return 'purple';
+  if(sec >= r) return 'red';
+  if(sec >= y) return 'yellow';
+  if(sec >= g) return 'green';
+  return 'neutral';
+}
+
+function applyStage(stage, sec){
+  document.body.classList.remove('state-neutral','state-green','state-yellow','state-red','state-purple');
+  document.body.classList.add('state-' + stage);
+
+  document.getElementById('dotG').classList.toggle('hit', sec >= thresholds[0]);
+  document.getElementById('dotY').classList.toggle('hit', sec >= thresholds[1]);
+  document.getElementById('dotR').classList.toggle('hit', sec >= thresholds[2]);
+  document.getElementById('dotP').classList.toggle('hit', sec >= thresholds[3]);
+
+  const cap = document.getElementById('captionText');
+  const [g,y,r,p] = thresholds;
+  if(stage==='neutral') cap.textContent = `Green at ${fmt(g*1000)}`;
+  else if(stage==='green') cap.textContent = `Yellow at ${fmt(y*1000)}`;
+  else if(stage==='yellow') cap.textContent = `Red at ${fmt(r*1000)}`;
+  else if(stage==='red') cap.textContent = `Disqualified at ${fmt(p*1000)}`;
+  else cap.textContent = `Time is still being recorded.`;
+
+  const badge = document.getElementById('dqBadge');
+  if(stage==='purple'){
+    badge.classList.add('show');
+  } else {
+    badge.classList.remove('show');
+  }
+}
+
+function tick(){
+  elapsedMs = Date.now() - startTs;
+  document.getElementById('clockDisplay').textContent = fmt(elapsedMs);
+  applyStage(currentStage(elapsedMs/1000), elapsedMs/1000);
+}
+
+function toggleRun(){
+  if(running){
+    running = false;
+    clearInterval(tickHandle);
+    document.getElementById('btnPlayPause').textContent = 'Resume';
+  } else {
+    running = true;
+    startTs = Date.now() - elapsedMs;
+    tickHandle = setInterval(tick, 100);
+    document.getElementById('btnPlayPause').textContent = 'Pause';
+  }
+}
+function stopTicking(){
+  running = false;
+  clearInterval(tickHandle);
+}
+function resetTimer(){
+  stopTicking();
+  elapsedMs = 0;
+  document.getElementById('clockDisplay').textContent = '0:00';
+  document.getElementById('btnPlayPause').textContent = 'Start';
+  applyStage('neutral', 0);
+  document.getElementById('captionText').textContent = 'Press start when the speaker begins.';
+  document.getElementById('speakerName').value = '';
+}
+function stopAndBack(){
+  stopTicking();
+  document.body.classList.remove('state-green','state-yellow','state-red','state-purple');
+  document.body.classList.add('state-neutral');
+  showTimerView('select');
+}
+
+function saveTimerEntry(){
+  stopTicking();
+  document.getElementById('btnPlayPause').textContent = elapsedMs > 0 ? 'Resume' : 'Start';
+
+  const name = document.getElementById('speakerName').value.trim() || '(no name)';
+  const speech = document.getElementById('runLabel').textContent;
+  const time = fmt(elapsedMs);
+  const disqualified = (elapsedMs / 1000) >= thresholds[3];
+  timerLog.unshift({ name, speech, time, disqualified });
+  renderTimerLog();
+}
+
+function renderTimerLog(){
+  const wrap = document.getElementById('timerLogWrap');
+  if(timerLog.length === 0){
+    wrap.innerHTML = `<p class="log-empty">Nothing saved yet — times you save will appear here until the page is refreshed.</p>`;
+    return;
+  }
+  let rows = timerLog.map(e => `<tr><td>${escapeHtml(e.name)}${e.disqualified ? ' <span class="dq-flag" title="Disqualified">!</span>' : ''}</td><td>${escapeHtml(e.speech)}</td><td>${e.time}</td></tr>`).join('');
+  wrap.innerHTML = `<table class="log-table">
+    <tr><th>Name</th><th>Speech</th><th>Time</th></tr>
+    ${rows}
+  </table>`;
+}
+renderTimerLog();
+
+/* ============ AH-COUNTER ============ */
+let ahWords = [
+  { key:'um', label:'Um', count:0, wod:false },
+  { key:'uh', label:'Uh', count:0, wod:false },
+  { key:'so', label:'So', count:0, wod:false },
+  { key:'like', label:'Like', count:0, wod:false },
+  { key:'youknow', label:'You know', count:0, wod:false },
+  { key:'and', label:'And…', count:0, wod:false },
+  { key:'repeat', label:'Repeat', count:0, wod:false },
+];
+const ahLog = [];
+
+function renderAhCounter(){
+  const gridEl = document.getElementById('tallyGrid');
+  gridEl.innerHTML = '';
+  ahWords.forEach((w, i) => {
+    const card = document.createElement('div');
+    card.className = 'tally-card';
+    card.onclick = (e) => {
+      if(e.target.classList.contains('remove')) return;
+      w.count++;
+      renderAhCounter();
+    };
+    card.innerHTML = `
+      <span class="word ${w.wod ? 'wod' : ''}">${escapeHtml(w.label)}${w.wod ? ' ★' : ''}</span>
+      <span style="display:flex;align-items:center;">
+        <span class="count">${w.count}</span>
+        ${w.wod ? `<span class="remove">✕</span>` : ''}
+      </span>`;
+    if(w.wod){
+      card.querySelector('.remove').onclick = (e) => {
+        e.stopPropagation();
+        ahWords.splice(i,1);
+        renderAhCounter();
+      };
+    }
+    gridEl.appendChild(card);
+  });
+}
+
+function addWordOfDay(){
+  const input = document.getElementById('wodInput');
+  const val = input.value.trim();
+  if(!val) return;
+  ahWords.push({ key:'wod-'+Date.now(), label:val, count:0, wod:true });
+  input.value = '';
+  renderAhCounter();
+}
+
+function resetAhCounter(){
+  const total = ahWords.reduce((sum,w) => sum + w.count, 0);
+  const hasInfo = document.getElementById('ahName').value.trim() || document.getElementById('ahSpeech').value;
+  if(total > 0 || hasInfo){
+    showConfirm("Are you sure? Did you register the tallies?", doAhReset);
+    return;
+  }
+  doAhReset();
+}
+
+function doAhReset(){
+  ahWords.forEach(w => w.count = 0);
+  ahWords = ahWords.filter(w => !w.wod);
+  document.getElementById('ahName').value = '';
+  document.getElementById('ahSpeech').value = '';
+  document.getElementById('wodInput').value = '';
+  renderAhCounter();
+}
+
+function registerAhEntry(){
+  const name = document.getElementById('ahName').value.trim() || '(no name)';
+  const speech = document.getElementById('ahSpeech').value || '(not set)';
+  const tallies = ahWords.map(w => `${w.label}: ${w.count}`).join(', ');
+  const total = ahWords.reduce((sum,w) => sum + w.count, 0);
+  ahLog.unshift({ name, speech, tallies, total });
+  renderAhLog();
+}
+
+function renderAhLog(){
+  const wrap = document.getElementById('ahLogWrap');
+  if(ahLog.length === 0){
+    wrap.innerHTML = `<p class="log-empty">Nothing registered yet — tallies you register will appear here until the page is refreshed.</p>`;
+    return;
+  }
+  let rows = ahLog.map(e => `<tr><td>${escapeHtml(e.name)}</td><td>${escapeHtml(e.speech)}</td><td>${escapeHtml(e.tallies)}</td><td>${e.total}</td></tr>`).join('');
+  wrap.innerHTML = `<table class="log-table">
+    <tr><th>Name</th><th>Speech</th><th>Tallies</th><th>Total</th></tr>
+    ${rows}
+  </table>`;
+}
+
+function escapeHtml(str){
+  const d = document.createElement('div');
+  d.textContent = str;
+  return d.innerHTML;
+}
+
+/* ============ CUSTOM CONFIRM MODAL ============ */
+function showConfirm(message, onConfirm){
+  const overlay = document.getElementById('confirmOverlay');
+  document.getElementById('confirmMessage').textContent = message;
+  overlay.classList.add('show');
+
+  const okBtn = document.getElementById('confirmCancel');
+  const yesBtn = document.getElementById('confirmOk');
+
+  function cleanup(){
+    overlay.classList.remove('show');
+    okBtn.removeEventListener('click', onCancel);
+    yesBtn.removeEventListener('click', onYes);
+  }
+  function onCancel(){ cleanup(); }
+  function onYes(){ cleanup(); onConfirm(); }
+
+  okBtn.addEventListener('click', onCancel);
+  yesBtn.addEventListener('click', onYes);
+}
+
+renderAhCounter();
+renderAhLog();
+</script>
+</body>
+</html>
