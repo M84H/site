@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hierarchy JSON Editor</title>
+    <script type="module" crossorigin src="/tag-organizer/assets/index-CXVLlNOh.js"></script>
+    <link rel="stylesheet" crossorigin href="/tag-organizer/assets/index-7VmCMx9V.css">
+  </head>
+  <body>
+    <div id="app">
+      <header class="toolbar">
+        <h1>Hierarchy Editor</h1>
+        <div class="controls">
+          <div class="control-group">
+            <label for="file-select">File:</label>
+            <select id="file-select" class="btn">
+              <!-- Options populated via JS -->
+            </select>
+          </div>
+          
+          <div class="control-group">
+            <label for="max-depth">Max Levels:</label>
+            <input type="number" id="max-depth" value="3" min="1" max="10" />
+          </div>
+          
+          <button id="add-root-btn" class="btn btn-primary">Add Root Node</button>
+          <button id="reload-btn" class="btn btn-edit">Reload Assets</button>
+          <button id="export-btn" class="btn btn-success">Export Current</button>
+          <button id="export-all-btn" class="btn btn-success">Export All</button>
+        </div>
+      </header>
+      
+      <main>
+        <div id="tree-container" class="tree-container">
+          <p class="placeholder">Loading data...</p>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
