@@ -1,23 +1,47 @@
 {
-  "Meibutsu-gire (Famous named fragment)": {
-    "ja": "名物切"
-  },
   "Annotations (Red)": {
-    "ja": "朱書き入れ"
+    "ja": "書き入れ（朱筆）"
   },
   "Annotations (Black)": {
-    "ja": "墨書き入れ"
+    "ja": "書き入れ（墨筆）"
+  },
+  "Vermilion dots": {
+    "ja": "朱点"
+  },
+  "Ink dots": {
+    "ja": "墨点"
+  },
+  "Kassaten / Ioriten(Red)": {
+    "ja": "合点／庵点（朱）"
+  },
+  "Kassaten / Ioriten(Black)": {
+    "ja": "合点／庵点（墨）"
   },
   "Ruling lines": {
     "ja": "界線"
+  },
+  "Text on verso": {
+    "ja": "紙背文書"
+  },
+  "Chirashigaki (scattered writing)": {
+    "ja": "散らし書き"
+  },
+  "Joined sheets": {
+    "ja": "紙継ぎ"
+  },
+  "Erased characters": {
+    "ja": "擦り消し"
+  },
+  "Roll creases present": {
+    "ja": "巻皺"
+  },
+  "Meibutsu-gire (Famous named fragment)": {
+    "ja": "名物切"
   },
   "Replacement": {
     "ja": "貼り替え"
   },
   "Possible replacement": {
     "ja": "貼り替えの可能性あり"
-  },
-  "Text on verso": {
-    "ja": "紙背文書"
   }
 }

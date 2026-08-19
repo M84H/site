@@ -5,8 +5,8 @@
   "Empress Kōmyō": {
     "ja": "光明皇后"
   },
-  "Emperor Go-Toba": {
-    "ja": "後鳥羽"
+  "Retired Emperor Go-toba": {
+    "ja": "後鳥羽院"
   },
   "Retired Emperor Go-fukakusa": {
     "ja": "後深草院"
@@ -68,11 +68,11 @@
   "Hon’ami Kōetsu": {
     "ja": "本阿弥光悦"
   },
-  "Newly Retired Emperor (prob. Retired Emperor Go-Sai)": {
-    "ja": "新院様（後西院か）"
+  "Newly Retired Emperor": {
+    "ja": "新院様"
   },
-  "Retired Emperor (prob. Retired Emperor Go-Mizuno'ō)": {
-    "ja": "仙洞様（後水尾院か）"
+  "Retired Emperor": {
+    "ja": "仙洞様"
   },
   "Tsumori Kuninatsu": {
     "ja": "津守国夏"
@@ -212,7 +212,7 @@
   "Fushimi Kunitaka shinnō": {
     "ja": "伏見邦高親王"
   },
-  "Fushimi no miya Sada'atsu Shinnō": {
+  "Fushimi-miya Sada'atsu shinnō": {
     "ja": "伏見宮貞敦親王"
   },
   "Hachijō Toshihito shinnō": {
@@ -311,8 +311,11 @@
   "Saigyō hōshi": {
     "ja": "西行法師"
   },
-  "Shōkō-in (Ton'a hōshi)": {
-    "ja": "称光院／頓阿法師"
+  "Shōkō-in": {
+    "ja": "称光院"
+  },
+  "Ton'a hōshi": {
+    "ja": "頓阿法師"
   },
   "Hibi Masahiro": {
     "ja": "日比正広"
@@ -344,17 +347,23 @@
   "Satomura Shōshitsu": {
     "ja": "里村昌叱"
   },
+  "Yuumu": {
+    "ja": "友務"
+  },
+  "Satomura Genteki": {
+    "ja": "昌琢玄的"
+  },
   "Sōyō": {
     "ja": "宗養"
   },
-  "Sōzen": {
-    "ja": "宗全"
+  "Jōhōji Kōjo": {
+    "ja": "定法寺公助"
   },
   "Sōryū": {
     "ja": "宗柳"
   },
-  "Jōhōji Kōjo": {
-    "ja": "定法寺公助"
+  "Sōzen": {
+    "ja": "宗全"
   },
   "Takeda Motomitsu": {
     "ja": "武田元光"
@@ -372,7 +381,7 @@
     "ja": "里村紹巴"
   },
   "Satomura Shōtaku": {
-    "ja": "昌琢／友務／玄的"
+    "ja": "里村昌琢"
   },
   "Shakuzen'in Songa": {
     "ja": "積善院尊雅"
