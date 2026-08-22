@@ -1,0 +1,401 @@
+{
+  "Emperor Shōmu": {
+    "ja": "聖武天皇"
+  },
+  "Empress Kōmyō": {
+    "ja": "光明皇后"
+  },
+  "Retired Emperor Go-toba": {
+    "ja": "後鳥羽院"
+  },
+  "Retired Emperor Go-fukakusa": {
+    "ja": "後深草院"
+  },
+  "Retired Emperor Go-Uda": {
+    "ja": "後宇多院"
+  },
+  "Retired Emperor Kameyama": {
+    "ja": "亀山院"
+  },
+  "Retired Emperor Fushimi": {
+    "ja": "伏見院"
+  },
+  "Retired Emperor Go-Fushimi": {
+    "ja": "後伏見院"
+  },
+  "Retired Emperor Go-Nijō": {
+    "ja": "後二条院"
+  },
+  "Emperor Go-Daigo": {
+    "ja": "後醍醐天皇"
+  },
+  "Retired Emperor Go-Kōgon": {
+    "ja": "後光厳院"
+  },
+  "Retired Emperor Go-En'yū": {
+    "ja": "後円融院"
+  },
+  "Retired Emperor Go-Komatsu": {
+    "ja": "後小松院"
+  },
+  "Retired Emperor Shōkō": {
+    "ja": "称光院"
+  },
+  "Retired Emperor Go-Hanazono": {
+    "ja": "後花園院"
+  },
+  "Retired Emperor Go-Tsuchimikado": {
+    "ja": "後土御門院"
+  },
+  "Koto no naishi (at Ret. Emperor Go-Tsuchimikado's court)": {
+    "ja": "後土御門院勾当内侍"
+  },
+  "Retired Emperor Go-Kashiwabara": {
+    "ja": "後柏原院"
+  },
+  "Retired Emperor Go-Nara": {
+    "ja": "後奈良院"
+  },
+  "Retired Emperor Ōgimachi": {
+    "ja": "正親町院"
+  },
+  "Retired Emperor Yōkō": {
+    "ja": "陽光院"
+  },
+  "Retired Emperor Go-Mizuno'ō": {
+    "ja": "後水尾院"
+  },
+  "Hon’ami Kōetsu": {
+    "ja": "本阿弥光悦"
+  },
+  "Newly Retired Emperor": {
+    "ja": "新院様"
+  },
+  "Retired Emperor": {
+    "ja": "仙洞様"
+  },
+  "Tsumori Kuninatsu": {
+    "ja": "津守国夏"
+  },
+  "Unknown": {
+    "ja": "（未詳）"
+  },
+  "Konoe Michitsugu": {
+    "ja": "近衛道嗣"
+  },
+  "Konoe Masaie": {
+    "ja": "近衛政家"
+  },
+  "Konoe Hisamichi": {
+    "ja": "近衛尚通"
+  },
+  "Konoe Taneie": {
+    "ja": "近衛稙家"
+  },
+  "Konoe Nobutada": {
+    "ja": "近衛信尹"
+  },
+  "Konoe Nobuhiro": {
+    "ja": "近衛信尋"
+  },
+  "Akiko naishinnō": {
+    "ja": "顕子内親王"
+  },
+  "Kujō Michiie": {
+    "ja": "九条道家"
+  },
+  "Nijō Akizane": {
+    "ja": "二条昭実"
+  },
+  "Ichijō Kanera (Kaneyoshi)": {
+    "ja": "一条兼良"
+  },
+  "Ichijō Fuyura (Fuyuyoshi)": {
+    "ja": "一条冬良"
+  },
+  "Ichijō Norifusa": {
+    "ja": "一条教房"
+  },
+  "Kujō Yoshitsune": {
+    "ja": "九条良経"
+  },
+  "Takatsukasa Nobuhisa": {
+    "ja": "鷹司信尚"
+  },
+  "Asukai Masachika": {
+    "ja": "飛鳥井雅親"
+  },
+  "Kazan'in Masanaga": {
+    "ja": "花山院政長"
+  },
+  "Tokudaiji Kintane": {
+    "ja": "徳大寺公胤"
+  },
+  "Sesonji Yukitoshi": {
+    "ja": "世尊寺行俊"
+  },
+  "Ashikaga Yoshimasa": {
+    "ja": "足利義政"
+  },
+  "Fujiwara no Teika (Sadaie)": {
+    "ja": "藤原定家"
+  },
+  "Fujiwara no Shunzei (Toshinari)": {
+    "ja": "藤原俊成"
+  },
+  "Fujiwara Tameie": {
+    "ja": "藤原為家"
+  },
+  "Nijō Tameuji": {
+    "ja": "二条為氏"
+  },
+  "Nijō Tameyo": {
+    "ja": "二条為世"
+  },
+  "Nijō Tamesada": {
+    "ja": "二条為定"
+  },
+  "Nijō Tamechika": {
+    "ja": "二条為親"
+  },
+  "Nijō Tameaki": {
+    "ja": "二条為明"
+  },
+  "Nijō Tameshige": {
+    "ja": "二条為重"
+  },
+  "Nijō Tamesuke": {
+    "ja": "二条為右"
+  },
+  "Kakugen": {
+    "ja": "覚源"
+  },
+  "Reizei Tamesuke": {
+    "ja": "冷泉為相"
+  },
+  "Abutsu-ni": {
+    "ja": "阿仏尼"
+  },
+  "Reizei Tamehide": {
+    "ja": "冷泉為秀"
+  },
+  "Nijō Tamefuji": {
+    "ja": "二条為藤"
+  },
+  "Reizei Tameyuki": {
+    "ja": "冷泉為之"
+  },
+  "Reizei Tametomi": {
+    "ja": "冷泉為富"
+  },
+  "Reizei Tamehiro": {
+    "ja": "冷泉為広"
+  },
+  "Reizei Tamemasu": {
+    "ja": "冷泉為益"
+  },
+  "Reizei Tamemitsu": {
+    "ja": "冷泉為満"
+  },
+  "Fujiwara no Kamatari": {
+    "ja": "藤氏鎌足"
+  },
+  "Munetaka shinnō": {
+    "ja": "宗尊親王"
+  },
+  "Son'en shinnō": {
+    "ja": "尊円親王"
+  },
+  "Go-Sukō-in": {
+    "ja": "後崇光院"
+  },
+  "Fushimi Kunitaka shinnō": {
+    "ja": "伏見邦高親王"
+  },
+  "Fushimi-miya Sada'atsu shinnō": {
+    "ja": "伏見宮貞敦親王"
+  },
+  "Hachijō Toshihito shinnō": {
+    "ja": "八条智仁親王"
+  },
+  "Fujiwara no Ietaka": {
+    "ja": "藤原家隆"
+  },
+  "Kinoshita Katsutoshi (Kinoshita Chōshōshi)": {
+    "ja": "木下勝俊"
+  },
+  "Minamoto no Toshiyori": {
+    "ja": "源俊頼"
+  },
+  "Sono Motouji": {
+    "ja": "園基氏"
+  },
+  "Sesonji Yukiyoshi": {
+    "ja": "世尊寺行能"
+  },
+  "Sesonji Yukitada": {
+    "ja": "世尊寺行尹"
+  },
+  "Sesonji Sadanari": {
+    "ja": "世尊寺定成"
+  },
+  "Sesonji Tsunetomo": {
+    "ja": "世尊寺経朝"
+  },
+  "Kamo no Chōmei": {
+    "ja": "鴨長明"
+  },
+  "Asukai Masatsune": {
+    "ja": "飛鳥井雅経"
+  },
+  "Asukai Masa'ari": {
+    "ja": "飛鳥井雅有"
+  },
+  "Ichi'i dono": {
+    "ja": "一位局"
+  },
+  "Asukai Masatsuna": {
+    "ja": "飛烏井雅綱"
+  },
+  "Hino Toshimitsu": {
+    "ja": "日野俊光"
+  },
+  "Karasumaru Mitsuhiro": {
+    "ja": "烏丸光広"
+  },
+  "Ogura Sanena": {
+    "ja": "小倉実名"
+  },
+  "Shimizudani Saneaki": {
+    "ja": "清水谷実秋"
+  },
+  "Sanjōnishi Sanetaka": {
+    "ja": "三条西実隆"
+  },
+  "Nakayama Nobuchika": {
+    "ja": "中山宣親"
+  },
+  "Iwayama Dōken": {
+    "ja": "岩山道堅"
+  },
+  "Anegakōji Naritsugu (Sadatsugu)": {
+    "ja": "姉小路済継"
+  },
+  "Shigenoi Norikuni": {
+    "ja": "滋野井教国"
+  },
+  "Tominokōji Sukenao": {
+    "ja": "富小路資直"
+  },
+  "Kitabatake Chika'aki": {
+    "ja": "北畠親顕"
+  },
+  "Madenokōji Korefusa": {
+    "ja": "万里小路惟房"
+  },
+  "Hosokawa Mochiyuki": {
+    "ja": "細川持之"
+  },
+  "Fujiwara no Kiyosuke": {
+    "ja": "藤原清輔"
+  },
+  "Minamoto no Yorimasa": {
+    "ja": "源頼政"
+  },
+  "Nijō-in no Sanuki": {
+    "ja": "二条院讃岐"
+  },
+  "Nijō Tamekane": {
+    "ja": "二条為兼"
+  },
+  "Saigyō hōshi": {
+    "ja": "西行法師"
+  },
+  "Shōkō-in": {
+    "ja": "称光院"
+  },
+  "Ton'a hōshi": {
+    "ja": "頓阿法師"
+  },
+  "Hibi Masahiro": {
+    "ja": "日比正広"
+  },
+  "Botanka Shōhaku": {
+    "ja": "牡丹花肖柏"
+  },
+  "Gyōkō": {
+    "ja": "尭孝"
+  },
+  "Inawashiro Kensai": {
+    "ja": "猪苗代兼載"
+  },
+  "Iwayama Sumihide": {
+    "ja": "岩山澄秀"
+  },
+  "Shūkō": {
+    "ja": "周興"
+  },
+  "Gyōken": {
+    "ja": "尭憲"
+  },
+  "Gyōjo": {
+    "ja": "行助"
+  },
+  "Sagara Tametsugu": {
+    "ja": "相良為続"
+  },
+  "Satomura Shōshitsu": {
+    "ja": "里村昌叱"
+  },
+  "Yuumu": {
+    "ja": "友務"
+  },
+  "Satomura Genteki": {
+    "ja": "昌琢玄的"
+  },
+  "Sōyō": {
+    "ja": "宗養"
+  },
+  "Jōhōji Kōjo": {
+    "ja": "定法寺公助"
+  },
+  "Sōryū": {
+    "ja": "宗柳"
+  },
+  "Sōzen": {
+    "ja": "宗全"
+  },
+  "Takeda Motomitsu": {
+    "ja": "武田元光"
+  },
+  "Sōboku": {
+    "ja": "宗牧"
+  },
+  "Sōchō": {
+    "ja": "宗長"
+  },
+  "Tsumori Tsunekuni": {
+    "ja": "津守経国"
+  },
+  "Satomura Jōha": {
+    "ja": "里村紹巴"
+  },
+  "Satomura Shōtaku": {
+    "ja": "里村昌琢"
+  },
+  "Shakuzen'in Songa": {
+    "ja": "積善院尊雅"
+  },
+  "Takeno Jō'ō": {
+    "ja": "武野紹鴎"
+  },
+  "Karasumaru Fuyumitsu": {
+    "ja": "烏丸冬光"
+  },
+  "Hosokawa Sansai": {
+    "ja": "細川三斎"
+  },
+  "Shōkado Shōjō": {
+    "ja": "松花堂昭乗"
+  }
+}
