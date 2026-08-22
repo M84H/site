@@ -30,6 +30,9 @@
       transition: background 0.15s ease;
     }
     .btn:hover { background: var(--primary-hover); }
+    
+    .btn-secondary { background: #e7e5e4; color: var(--text); }
+    .btn-secondary:hover { background: #d6d3d1; }
 
     .layout { display: grid; grid-template-columns: 350px 1fr; gap: 24px; }
     .panel { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
@@ -65,12 +68,11 @@
 
     .assigned-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; min-height: 40px; }
     
-    /* Tag chip baseline styles */
     .tag-chip { padding: 6px 12px; border-radius: 20px; font-size: 0.85rem; display: flex; align-items: center; gap: 8px; font-weight: 500; cursor: default; }
     .tag-chip .remove { cursor: pointer; font-weight: bold; font-size: 1.1rem; line-height: 1; opacity: 0.6; transition: opacity 0.15s; }
     .tag-chip .remove:hover { opacity: 1; }
   </style>
-  <script type="module" crossorigin src="/tagger/assets/index-D2vdOMjT.js"></script>
+  <script type="module" crossorigin src="/tagger/assets/index-zSAskbpc.js"></script>
 </head>
 <body>
 
@@ -79,7 +81,11 @@
       <h1>Tekagami Fragment Tagging Tool</h1>
       <p class="subtitle">Collaborative metadata entry for multi-institutional tekagami collections</p>
     </div>
-    <button class="btn" onclick="exportToExcel()">Export Excel (.xlsx)</button>
+    <div style="display: flex; gap: 8px;">
+      <button class="btn btn-secondary" onclick="clearSession()" title="Clear all local data and restart">Reset Session</button>
+      <button class="btn" onclick="exportToJson()">Export JSON</button>
+      <button class="btn" onclick="exportToExcel()">Export Excel</button>
+    </div>
   </header>
 
   <div class="layout">
@@ -97,7 +103,7 @@
       </div>
       <div class="form-group">
         <label>Parent Object ID</label>
-        <input type="text" id="metaParentId" class="input-field" oninput="updateMetadata()" placeholder="e.g. MS 104" />
+        <input type="text" id="metaParentId" class="input-field" oninput="updateMetadata()" placeholder="e.g. YAJ 50b" />
       </div>
       <div class="form-group">
         <label>Notes / Comments</label>
