@@ -1,24 +1,56 @@
 {
-  "Annotations (Red)": {
-    "ja": "書き入れ（朱筆）"
+  "Annotations": {
+    "ja": "書き入れ",
+    "children": {
+      "Annotations (Red)": {
+        "ja": "書き入れ（朱筆）"
+      },
+      "Annotations (Black)": {
+        "ja": "書き入れ（墨筆）"
+      }
+    }
   },
-  "Annotations (Black)": {
-    "ja": "書き入れ（墨筆）"
+  "Dots": {
+    "ja": "点",
+    "children": {
+      "Dots (Red)": {
+        "ja": "朱点"
+      },
+      "Dots (Black)": {
+        "ja": "墨点"
+      }
+    }
   },
-  "Vermilion dots": {
-    "ja": "朱点"
-  },
-  "Ink dots": {
-    "ja": "墨点"
-  },
-  "Kassaten / Ioriten(Red)": {
-    "ja": "合点／庵点（朱）"
-  },
-  "Kassaten / Ioriten(Black)": {
-    "ja": "合点／庵点（墨）"
+  "Kassaten / Ioriten": {
+    "ja": "合点／庵点",
+    "children": {
+      "Kassaten / Ioriten (Red)": {
+        "ja": "合点／庵点（朱）"
+      },
+      "Kassaten / Ioriten (Black)": {
+        "ja": "合点／庵点（墨）"
+      }
+    }
   },
   "Ruling lines": {
-    "ja": "界線"
+    "ja": "界線",
+    "children": {
+      "Gold ruling lines": {
+        "ja": "金界"
+      },
+      "Silver ruling lines": {
+        "ja": "銀界"
+      },
+      "Black ruling lines": {
+        "ja": "墨界"
+      },
+      "Gray ruling lines": {
+        "ja": "淡墨界"
+      },
+      "Indented ruling lines": {
+        "ja": "押し界"
+      }
+    }
   },
   "Text on verso": {
     "ja": "紙背文書"

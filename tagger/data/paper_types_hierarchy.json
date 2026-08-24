@@ -49,8 +49,8 @@
       }
     }
   },
-  "Unprocessed and undecorated papers": {
-    "ja": "加工・装飾がない",
+  "Plain papers": {
+    "ja": "素紙",
     "children": {
       "Choshi (paper mulberry)": {
         "ja": "楮紙",
