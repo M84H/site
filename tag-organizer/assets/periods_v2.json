@@ -1,0 +1,65 @@
+{
+  "PER_001": {
+    "en": "Nara Period",
+    "ja": "奈良時代",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "PER_002": {
+    "en": "Heian Period",
+    "ja": "平安時代",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "PER_003": {
+    "en": "Kamakura Period",
+    "ja": "鎌倉時代",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "PER_004": {
+    "en": "Nambokucho Period",
+    "ja": "南北朝時代",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "PER_005": {
+    "en": "Muromachi Period",
+    "ja": "室町時代",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "PER_006": {
+    "en": "Azuchi-Momoyama period",
+    "ja": "安土桃山時代",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "PER_007": {
+    "en": "Edo Period",
+    "ja": "江戸時代",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "PER_008": {
+    "en": "Date unconfirmed",
+    "ja": "年代未詳",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "PER_009": {
+    "en": "Goryeo Period",
+    "ja": "高麗時代",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  }
+}
