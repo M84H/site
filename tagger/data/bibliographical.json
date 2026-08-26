@@ -48,7 +48,10 @@
         "ja": "淡墨界"
       },
       "Indented ruling lines": {
-        "ja": "押し界"
+        "ja": "押界"
+      },
+      "Other": {
+        "ja": "その他"
       }
     }
   },

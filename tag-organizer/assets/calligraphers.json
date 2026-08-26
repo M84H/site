@@ -1,77 +1,80 @@
 {
-  "Emperor Shōmu": {
+  "Shōmu Tennō": {
     "ja": "聖武天皇"
   },
-  "Empress Kōmyō": {
+  "Kōmyō Kōgō": {
     "ja": "光明皇后"
   },
-  "Retired Emperor Go-toba": {
-    "ja": "後鳥羽院"
+  "Go-Toba Tennō": {
+    "ja": "後鳥羽天皇"
   },
-  "Retired Emperor Go-fukakusa": {
-    "ja": "後深草院"
+  "Go-Fukakusa Tennō": {
+    "ja": "後深草天皇"
   },
-  "Retired Emperor Go-Uda": {
-    "ja": "後宇多院"
+  "Go-Uda Tennō": {
+    "ja": "後宇多天皇"
   },
-  "Retired Emperor Kameyama": {
-    "ja": "亀山院"
+  "Kameyama Tennō": {
+    "ja": "亀山天皇"
   },
-  "Retired Emperor Fushimi": {
-    "ja": "伏見院"
+  "Fushimi Tennō": {
+    "ja": "伏見天皇"
   },
-  "Retired Emperor Go-Fushimi": {
-    "ja": "後伏見院"
+  "Go-Fushimi Tennō": {
+    "ja": "後伏見天皇"
   },
-  "Retired Emperor Go-Nijō": {
-    "ja": "後二条院"
+  "Go-Nijō Tennō": {
+    "ja": "後二条天皇"
   },
-  "Emperor Go-Daigo": {
+  "Go-Daigo Tennō": {
     "ja": "後醍醐天皇"
   },
-  "Retired Emperor Go-Kōgon": {
-    "ja": "後光厳院"
+  "Go-Kōgon Tennō": {
+    "ja": "後光厳天皇"
   },
-  "Retired Emperor Go-En'yū": {
-    "ja": "後円融院"
+  "Go-En'yū Tennō": {
+    "ja": "後円融天皇"
   },
-  "Retired Emperor Go-Komatsu": {
-    "ja": "後小松院"
+  "Go-Komatsu Tennō": {
+    "ja": "後小松天皇"
   },
-  "Retired Emperor Shōkō": {
-    "ja": "称光院"
+  "Shōkō Tennō": {
+    "ja": "称光天皇"
   },
-  "Retired Emperor Go-Hanazono": {
-    "ja": "後花園院"
+  "Go-Hanazono Tennō": {
+    "ja": "後花園天皇"
   },
-  "Retired Emperor Go-Tsuchimikado": {
-    "ja": "後土御門院"
+  "Go-Tsuchimikado Tennō": {
+    "ja": "後土御門天皇"
   },
-  "Koto no naishi (at Ret. Emperor Go-Tsuchimikado's court)": {
+  "Go-Tsuchimikado-in Kōtō no Naishi ": {
     "ja": "後土御門院勾当内侍"
   },
-  "Retired Emperor Go-Kashiwabara": {
-    "ja": "後柏原院"
+  "Go-Kashiwabara Tennō": {
+    "ja": "後柏原天皇"
   },
-  "Retired Emperor Go-Nara": {
-    "ja": "後奈良院"
+  "Go-Nara Tennō": {
+    "ja": "後奈良天皇"
   },
-  "Retired Emperor Ōgimachi": {
-    "ja": "正親町院"
+  "Ōgimachi Tennō": {
+    "ja": "正親町天皇"
   },
-  "Retired Emperor Yōkō": {
-    "ja": "陽光院"
+  "Yōkō Tennō": {
+    "ja": "陽光天皇"
   },
-  "Retired Emperor Go-Mizuno'ō": {
-    "ja": "後水尾院"
+  "Go-Mizunoō Tennō": {
+    "ja": "後水尾天皇"
   },
   "Hon’ami Kōetsu": {
     "ja": "本阿弥光悦"
   },
-  "Newly Retired Emperor": {
+  "Shin'in sama": {
     "ja": "新院様"
   },
-  "Retired Emperor": {
+  "Go-Sai Tennō": {
+    "ja": "後西天皇"
+  },
+  "Sentō sama": {
     "ja": "仙洞様"
   },
   "Tsumori Kuninatsu": {
@@ -98,7 +101,7 @@
   "Konoe Nobuhiro": {
     "ja": "近衛信尋"
   },
-  "Akiko naishinnō": {
+  "Akiko Naishinnō": {
     "ja": "顕子内親王"
   },
   "Kujō Michiie": {
@@ -200,22 +203,22 @@
   "Fujiwara no Kamatari": {
     "ja": "藤氏鎌足"
   },
-  "Munetaka shinnō": {
+  "Munetaka Shinnō": {
     "ja": "宗尊親王"
   },
-  "Son'en shinnō": {
+  "Son'en Shinnō": {
     "ja": "尊円親王"
   },
   "Go-Sukō-in": {
     "ja": "後崇光院"
   },
-  "Fushimi Kunitaka shinnō": {
+  "Fushimi Kunitaka Shinnō": {
     "ja": "伏見邦高親王"
   },
-  "Fushimi-miya Sada'atsu shinnō": {
+  "Fushimi no Miya Sadaatsu Shinnō": {
     "ja": "伏見宮貞敦親王"
   },
-  "Hachijō Toshihito shinnō": {
+  "Hachijō Toshihito Shinnō": {
     "ja": "八条智仁親王"
   },
   "Fujiwara no Ietaka": {
@@ -248,10 +251,10 @@
   "Asukai Masatsune": {
     "ja": "飛鳥井雅経"
   },
-  "Asukai Masa'ari": {
+  "Asukai Masaari": {
     "ja": "飛鳥井雅有"
   },
-  "Ichi'i dono": {
+  "Ichii dono": {
     "ja": "一位局"
   },
   "Asukai Masatsuna": {
@@ -287,7 +290,7 @@
   "Tominokōji Sukenao": {
     "ja": "富小路資直"
   },
-  "Kitabatake Chika'aki": {
+  "Kitabatake Chikaaki": {
     "ja": "北畠親顕"
   },
   "Madenokōji Korefusa": {
@@ -308,13 +311,13 @@
   "Nijō Tamekane": {
     "ja": "二条為兼"
   },
-  "Saigyō hōshi": {
+  "Saigyō Hōshi": {
     "ja": "西行法師"
   },
   "Shōkō-in": {
     "ja": "称光院"
   },
-  "Ton'a hōshi": {
+  "Ton'a Hōshi": {
     "ja": "頓阿法師"
   },
   "Hibi Masahiro": {
@@ -386,7 +389,7 @@
   "Shakuzen'in Songa": {
     "ja": "積善院尊雅"
   },
-  "Takeno Jō'ō": {
+  "Takeno Jōō": {
     "ja": "武野紹鴎"
   },
   "Karasumaru Fuyumitsu": {
