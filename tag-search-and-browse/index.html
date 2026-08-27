@@ -50,7 +50,6 @@
       padding: 20px;
       border-radius: 6px;
       border: 1px solid #ccc;
-      display: none; /* Hidden until JSON loads */
     }
 
     .upload-section {
@@ -109,7 +108,7 @@
       margin: 0;
     }
     ul.tree-list ul {
-      padding-left: 20px; /* Indent children */
+      padding-left: 20px; 
       margin: 0;
       list-style-type: none;
     }
@@ -139,10 +138,17 @@
       display: flex;
       align-items: flex-start;
       margin-left: 5px;
+      flex: 1;
     }
     .tree-node-header input {
       margin-right: 8px;
       margin-top: 3px;
+    }
+    .id-badge {
+      font-size: 0.75rem;
+      color: #888;
+      margin-left: auto;
+      padding-left: 10px;
     }
 
     .btn-primary {
@@ -161,6 +167,10 @@
     }
     .btn-primary:hover {
       background-color: #444;
+    }
+    .btn-primary:disabled {
+      background-color: #999;
+      cursor: not-allowed;
     }
 
     /* Results */
@@ -206,36 +216,56 @@
   
   <div class="main-content">
     <div class="upload-section" id="upload-wrapper">
-      <label for="json-upload" style="font-weight: bold; display: block; margin-bottom: 10px;">Upload Database Configuration (JSON):</label>
+      <label for="json-upload" style="font-weight: bold; display: block; margin-bottom: 10px;">Upload Fragment Data (JSON):</label>
       <input type="file" id="json-upload" accept=".json">
     </div>
     <div id="results-container">
-      <div class="empty-state">Load a dataset to begin.</div>
+      <div class="empty-state">Load a fragment dataset to begin searching.</div>
     </div>
   </div>
 
   <div class="sidebar" id="sidebar">
     <h3 style="margin-top: 0; border-bottom: 2px solid #ccc; padding-bottom: 10px;">Search Filters</h3>
     <div id="accordions-container">
-      <!-- Dynamic accordions injected here -->
+      <div class="empty-state">Loading dictionaries...</div>
     </div>
-    <button class="btn-primary" id="search-btn">Run Search</button>
+    <button class="btn-primary" id="search-btn" disabled>Run Search</button>
   </div>
 
 </div>
 
 <script>
   let fragmentData = {};
+  let HIERARCHIES = {};
   
-  const categories = [
-    "Source / Content", 
-    "Calligraphers", 
-    "Appraisers", 
-    "Paper Types", 
-    "Periods", 
-    "Bibliographical"
-  ];
+  // Point to the V2 ID-based dictionaries
+  const DATA_SOURCES = {
+    "Source / Content": "./assets/source_content_hierarchy_v2.json",
+    "Calligraphers": "./assets/calligraphers_v2.json",
+    "Appraisers": "./assets/appraisers_v2.json",
+    "Paper Types": "./assets/paper_types_hierarchy_v2.json",
+    "Periods": "./assets/periods_v2.json",
+    "Bibliographical": "./assets/bibliographical_v2.json"
+  };
 
+  const categories = Object.keys(DATA_SOURCES);
+
+  // 1. Fetch Dictionaries on Load
+  async function loadDictionaries() {
+    for (const [categoryName, filePath] of Object.entries(DATA_SOURCES)) {
+      try {
+        const response = await fetch(filePath);
+        if (response.ok) {
+          HIERARCHIES[categoryName] = await response.json();
+        }
+      } catch (err) {
+        console.error(`Failed to load ${categoryName}:`, err);
+      }
+    }
+    initializeSidebar();
+  }
+
+  // 2. Fragment Upload Handler
   document.getElementById('json-upload').addEventListener('change', function(event) {
     const file = event.target.files[0];
     if (!file) return;
@@ -245,9 +275,8 @@
       try {
         fragmentData = JSON.parse(e.target.result);
         document.getElementById('upload-wrapper').style.display = 'none';
-        document.getElementById('sidebar').style.display = 'block';
-        document.getElementById('results-container').innerHTML = '<div class="empty-state">Select filters from the sidebar and click "Run Search" to view fragments.</div>';
-        initializeSidebar(fragmentData);
+        document.getElementById('search-btn').disabled = false;
+        document.getElementById('results-container').innerHTML = '<div class="empty-state">Data loaded! Select filters from the sidebar and click "Run Search" to view fragments.</div>';
       } catch (err) {
         alert("Invalid JSON file.");
       }
@@ -255,30 +284,8 @@
     reader.readAsText(file);
   });
 
-  function initializeSidebar(data) {
-    const categoryTrees = {};
-    categories.forEach(cat => categoryTrees[cat] = {});
-
-    // Parse the JSON array paths into a nested object structure
-    for (const fragId in data) {
-      data[fragId].tags.forEach(tag => {
-        if (!categoryTrees[tag.category]) return;
-        
-        let currentLevel = categoryTrees[tag.category];
-        tag.path.forEach((nodeName, index) => {
-          if (!currentLevel[nodeName]) {
-            // Reconstruct the full string path used by the search logic
-            const partialPathArray = tag.path.slice(0, index + 1);
-            currentLevel[nodeName] = {
-              __fullPath: `${tag.category} > ${partialPathArray.join(' > ')}`,
-              children: {}
-            };
-          }
-          currentLevel = currentLevel[nodeName].children;
-        });
-      });
-    }
-
+  // 3. Build Sidebar from Dictionaries
+  function initializeSidebar() {
     const accordionsContainer = document.getElementById('accordions-container');
     accordionsContainer.innerHTML = ''; 
 
@@ -300,17 +307,17 @@
       const treeContainer = document.createElement('div');
       treeContainer.className = 'tree-container';
       
-      // Render the HTML tree from the object structure
-      const rootUl = renderTree(categoryTrees[cat], cat);
+      const rootUl = renderTree(HIERARCHIES[cat], cat);
       if (rootUl) treeContainer.appendChild(rootUl);
 
-      // Recursive live search for the tree
+      // Recursive live search for the tree (Checks Label + Synonyms)
       searchInput.addEventListener('input', function(e) {
         const term = e.target.value.toLowerCase();
         const rootLis = treeContainer.querySelectorAll(':scope > ul > li');
         
         function filterNode(li, searchTerm) {
           const labelText = li.querySelector('label').innerText.toLowerCase();
+          const synonymText = li.dataset.synonyms || "";
           const childrenDiv = li.querySelector('.tree-children');
           let hasVisibleChild = false;
           
@@ -321,11 +328,10 @@
             });
           }
           
-          const isMatch = labelText.includes(searchTerm);
+          const isMatch = labelText.includes(searchTerm) || synonymText.includes(searchTerm);
           const shouldShow = isMatch || hasVisibleChild;
           li.style.display = shouldShow ? 'block' : 'none';
           
-          // Auto-expand/collapse based on search
           if (childrenDiv) {
             const toggleBtn = li.querySelector('.tree-toggle');
             if (searchTerm && hasVisibleChild) {
@@ -351,19 +357,24 @@
     });
   }
 
-  // Recursive function to build DOM tree
   function renderTree(treeObj, category) {
-    const keys = Object.keys(treeObj).filter(k => k !== '__fullPath' && k !== 'children').sort();
+    if (!treeObj || typeof treeObj !== 'object') return null;
+    const keys = Object.keys(treeObj);
     if (keys.length === 0) return null;
 
     const ul = document.createElement('ul');
     ul.className = 'tree-list';
 
-    keys.forEach(key => {
-      const node = treeObj[key];
-      const hasChildren = Object.keys(node.children).length > 0;
+    keys.forEach(tagId => {
+      const node = treeObj[tagId];
+      const hasChildren = node.children && Object.keys(node.children).length > 0;
       
       const li = document.createElement('li');
+      
+      // Inject synonyms into dataset for search filtering
+      const syns = [...(node.synonyms_en || []), ...(node.synonyms_ja || [])].join(' ').toLowerCase();
+      li.dataset.synonyms = syns;
+
       const header = document.createElement('div');
       header.className = 'tree-node-header';
       
@@ -375,49 +386,71 @@
       const label = document.createElement('label');
       const cb = document.createElement('input');
       cb.type = 'checkbox';
-      cb.value = node.__fullPath;
+      cb.value = tagId; 
       cb.dataset.category = category;
       
-      const textNode = document.createTextNode(key);
+      const primaryLabel = node.ja || node.en || "Unnamed";
+      const enLabel = node.en ? ` (${node.en})` : '';
       
+      // Store raw object string on checkbox to recursively find children later
+      cb.dataset.rawNode = JSON.stringify(node);
+
       label.appendChild(cb);
-      label.appendChild(textNode);
+      label.appendChild(document.createTextNode(`${primaryLabel}${enLabel}`));
+      
+      const idBadge = document.createElement('span');
+      idBadge.className = 'id-badge';
+      idBadge.innerText = `[${tagId}]`;
+
       header.appendChild(toggleBtn);
       header.appendChild(label);
+      header.appendChild(idBadge);
       li.appendChild(header);
       
       if (hasChildren) {
         const childrenDiv = document.createElement('div');
         childrenDiv.className = 'tree-children';
-        childrenDiv.style.display = 'none'; // Folded by default
+        childrenDiv.style.display = 'none'; 
         
         const childUl = renderTree(node.children, category);
         if (childUl) childrenDiv.appendChild(childUl);
         li.appendChild(childrenDiv);
         
-        // Handle expand/collapse click
         toggleBtn.addEventListener('click', () => {
           const isHidden = childrenDiv.style.display === 'none';
           childrenDiv.style.display = isHidden ? 'block' : 'none';
           toggleBtn.innerText = isHidden ? '▼' : '▶';
         });
       }
-      
       ul.appendChild(li);
     });
     
     return ul;
   }
 
+  // Recursive helper to grab a checked node's ID and ALL its child IDs
+  function gatherAllIds(tagId, nodeObj) {
+    let ids = [tagId];
+    if (nodeObj.children) {
+      for (const childId in nodeObj.children) {
+        ids = ids.concat(gatherAllIds(childId, nodeObj.children[childId]));
+      }
+    }
+    return ids;
+  }
+
+  // 4. Run the Search using Abstract IDs
   document.getElementById('search-btn').addEventListener('click', performSearch);
 
   function performSearch() {
     const activeFilters = {};
-    categories.forEach(cat => activeFilters[cat] = []);
+    categories.forEach(cat => activeFilters[cat] = new Set());
     
     const checkboxes = document.querySelectorAll('.tree-list input[type="checkbox"]:checked');
     checkboxes.forEach(cb => {
-      activeFilters[cb.dataset.category].push(cb.value);
+      const nodeData = JSON.parse(cb.dataset.rawNode);
+      const allAssociatedIds = gatherAllIds(cb.value, nodeData);
+      allAssociatedIds.forEach(id => activeFilters[cb.dataset.category].add(id));
     });
 
     const resultsContainer = document.getElementById('results-container');
@@ -429,13 +462,12 @@
     for (const [fragId, fragInfo] of Object.entries(fragmentData)) {
       let isMatch = true;
 
-      for (const cat in activeFilters) {
-        if (activeFilters[cat].length === 0) continue; 
+      for (const cat of categories) {
+        if (activeFilters[cat].size === 0) continue; 
         filtersApplied = true;
 
-        const hasCategoryMatch = activeFilters[cat].some(filterVal => {
-          return fragInfo.tags.some(t => t.category === cat && t.fullPathStr.startsWith(filterVal));
-        });
+        // Check if ANY of the fragment's tags match the valid IDs for this category
+        const hasCategoryMatch = fragInfo.tags.some(t => activeFilters[cat].has(t.tagId));
 
         if (!hasCategoryMatch) {
           isMatch = false;
@@ -468,8 +500,11 @@
     
     const tagsByCat = {};
     info.tags.forEach(t => {
-      if (!tagsByCat[t.category]) tagsByCat[t.category] = [];
-      tagsByCat[t.category].push(t.label);
+      // Only display the leaf node tags (those that actually have an ID assigned) to avoid clutter
+      if (t.tagId) {
+        if (!tagsByCat[t.category]) tagsByCat[t.category] = [];
+        tagsByCat[t.category].push(`${t.label} [${t.tagId}]`);
+      }
     });
 
     for (const cat in tagsByCat) {
@@ -483,6 +518,9 @@
     card.innerHTML = html;
     container.appendChild(card);
   }
+
+  // Boot the app
+  loadDictionaries();
 </script>
 </body>
 </html>

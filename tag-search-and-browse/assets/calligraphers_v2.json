@@ -1,0 +1,940 @@
+{
+  "CAL_001": {
+    "en": "Shōmu Tennō",
+    "ja": "聖武天皇",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_002": {
+    "en": "Kōmyō Kōgō",
+    "ja": "光明皇后",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_003": {
+    "en": "Go-Toba Tennō",
+    "ja": "後鳥羽天皇",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_004": {
+    "en": "Go-Fukakusa Tennō",
+    "ja": "後深草天皇",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_005": {
+    "en": "Go-Uda Tennō",
+    "ja": "後宇多天皇",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_006": {
+    "en": "Kameyama Tennō",
+    "ja": "亀山天皇",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_007": {
+    "en": "Fushimi Tennō",
+    "ja": "伏見天皇",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_008": {
+    "en": "Go-Fushimi Tennō",
+    "ja": "後伏見天皇",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_009": {
+    "en": "Go-Nijō Tennō",
+    "ja": "後二条天皇",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_010": {
+    "en": "Go-Daigo Tennō",
+    "ja": "後醍醐天皇",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_011": {
+    "en": "Go-Kōgon Tennō",
+    "ja": "後光厳天皇",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_012": {
+    "en": "Go-En'yū Tennō",
+    "ja": "後円融天皇",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_013": {
+    "en": "Go-Komatsu Tennō",
+    "ja": "後小松天皇",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_014": {
+    "en": "Shōkō Tennō",
+    "ja": "称光天皇",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_015": {
+    "en": "Go-Hanazono Tennō",
+    "ja": "後花園天皇",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_016": {
+    "en": "Go-Tsuchimikado Tennō",
+    "ja": "後土御門天皇",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_017": {
+    "en": "Go-Tsuchimikado-in Kōtō no Naishi ",
+    "ja": "後土御門院勾当内侍",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_018": {
+    "en": "Go-Kashiwabara Tennō",
+    "ja": "後柏原天皇",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_019": {
+    "en": "Go-Nara Tennō",
+    "ja": "後奈良天皇",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_020": {
+    "en": "Ōgimachi Tennō",
+    "ja": "正親町天皇",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_021": {
+    "en": "Yōkō Tennō",
+    "ja": "陽光天皇",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_022": {
+    "en": "Go-Mizunoō Tennō",
+    "ja": "後水尾天皇",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_023": {
+    "en": "Hon’ami Kōetsu",
+    "ja": "本阿弥光悦",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_024": {
+    "en": "Shin'in sama",
+    "ja": "新院様",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_025": {
+    "en": "Go-Sai Tennō",
+    "ja": "後西天皇",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_026": {
+    "en": "Sentō sama",
+    "ja": "仙洞様",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_027": {
+    "en": "Tsumori Kuninatsu",
+    "ja": "津守国夏",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_028": {
+    "en": "Unknown",
+    "ja": "（未詳）",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_029": {
+    "en": "Konoe Michitsugu",
+    "ja": "近衛道嗣",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_030": {
+    "en": "Konoe Masaie",
+    "ja": "近衛政家",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_031": {
+    "en": "Konoe Hisamichi",
+    "ja": "近衛尚通",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_032": {
+    "en": "Konoe Taneie",
+    "ja": "近衛稙家",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_033": {
+    "en": "Konoe Nobutada",
+    "ja": "近衛信尹",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_034": {
+    "en": "Konoe Nobuhiro",
+    "ja": "近衛信尋",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_035": {
+    "en": "Akiko Naishinnō",
+    "ja": "顕子内親王",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_036": {
+    "en": "Kujō Michiie",
+    "ja": "九条道家",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_037": {
+    "en": "Nijō Akizane",
+    "ja": "二条昭実",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_038": {
+    "en": "Ichijō Kanera (Kaneyoshi)",
+    "ja": "一条兼良",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_039": {
+    "en": "Ichijō Fuyura (Fuyuyoshi)",
+    "ja": "一条冬良",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_040": {
+    "en": "Ichijō Norifusa",
+    "ja": "一条教房",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_041": {
+    "en": "Kujō Yoshitsune",
+    "ja": "九条良経",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_042": {
+    "en": "Takatsukasa Nobuhisa",
+    "ja": "鷹司信尚",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_043": {
+    "en": "Asukai Masachika",
+    "ja": "飛鳥井雅親",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_044": {
+    "en": "Kazan'in Masanaga",
+    "ja": "花山院政長",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_045": {
+    "en": "Tokudaiji Kintane",
+    "ja": "徳大寺公胤",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_046": {
+    "en": "Sesonji Yukitoshi",
+    "ja": "世尊寺行俊",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_047": {
+    "en": "Ashikaga Yoshimasa",
+    "ja": "足利義政",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_048": {
+    "en": "Fujiwara no Teika (Sadaie)",
+    "ja": "藤原定家",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_049": {
+    "en": "Fujiwara no Shunzei (Toshinari)",
+    "ja": "藤原俊成",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_050": {
+    "en": "Fujiwara Tameie",
+    "ja": "藤原為家",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_051": {
+    "en": "Nijō Tameuji",
+    "ja": "二条為氏",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_052": {
+    "en": "Nijō Tameyo",
+    "ja": "二条為世",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_053": {
+    "en": "Nijō Tamesada",
+    "ja": "二条為定",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_054": {
+    "en": "Nijō Tamechika",
+    "ja": "二条為親",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_055": {
+    "en": "Nijō Tameaki",
+    "ja": "二条為明",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_056": {
+    "en": "Nijō Tameshige",
+    "ja": "二条為重",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_057": {
+    "en": "Nijō Tamesuke",
+    "ja": "二条為右",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_058": {
+    "en": "Kakugen",
+    "ja": "覚源",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_059": {
+    "en": "Reizei Tamesuke",
+    "ja": "冷泉為相",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_060": {
+    "en": "Abutsu-ni",
+    "ja": "阿仏尼",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_061": {
+    "en": "Reizei Tamehide",
+    "ja": "冷泉為秀",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_062": {
+    "en": "Nijō Tamefuji",
+    "ja": "二条為藤",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_063": {
+    "en": "Reizei Tameyuki",
+    "ja": "冷泉為之",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_064": {
+    "en": "Reizei Tametomi",
+    "ja": "冷泉為富",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_065": {
+    "en": "Reizei Tamehiro",
+    "ja": "冷泉為広",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_066": {
+    "en": "Reizei Tamemasu",
+    "ja": "冷泉為益",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_067": {
+    "en": "Reizei Tamemitsu",
+    "ja": "冷泉為満",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_068": {
+    "en": "Fujiwara no Kamatari",
+    "ja": "藤氏鎌足",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_069": {
+    "en": "Munetaka Shinnō",
+    "ja": "宗尊親王",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_070": {
+    "en": "Son'en Shinnō",
+    "ja": "尊円親王",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_071": {
+    "en": "Go-Sukō-in",
+    "ja": "後崇光院",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_072": {
+    "en": "Fushimi Kunitaka Shinnō",
+    "ja": "伏見邦高親王",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_073": {
+    "en": "Fushimi no Miya Sadaatsu Shinnō",
+    "ja": "伏見宮貞敦親王",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_074": {
+    "en": "Hachijō Toshihito Shinnō",
+    "ja": "八条智仁親王",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_075": {
+    "en": "Fujiwara no Ietaka",
+    "ja": "藤原家隆",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_076": {
+    "en": "Kinoshita Katsutoshi (Kinoshita Chōshōshi)",
+    "ja": "木下勝俊",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_077": {
+    "en": "Minamoto no Toshiyori",
+    "ja": "源俊頼",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_078": {
+    "en": "Sono Motouji",
+    "ja": "園基氏",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_079": {
+    "en": "Sesonji Yukiyoshi",
+    "ja": "世尊寺行能",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_080": {
+    "en": "Sesonji Yukitada",
+    "ja": "世尊寺行尹",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_081": {
+    "en": "Sesonji Sadanari",
+    "ja": "世尊寺定成",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_082": {
+    "en": "Sesonji Tsunetomo",
+    "ja": "世尊寺経朝",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_083": {
+    "en": "Kamo no Chōmei",
+    "ja": "鴨長明",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_084": {
+    "en": "Asukai Masatsune",
+    "ja": "飛鳥井雅経",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_085": {
+    "en": "Asukai Masaari",
+    "ja": "飛鳥井雅有",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_086": {
+    "en": "Ichii dono",
+    "ja": "一位局",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_087": {
+    "en": "Asukai Masatsuna",
+    "ja": "飛烏井雅綱",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_088": {
+    "en": "Hino Toshimitsu",
+    "ja": "日野俊光",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_089": {
+    "en": "Karasumaru Mitsuhiro",
+    "ja": "烏丸光広",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_090": {
+    "en": "Ogura Sanena",
+    "ja": "小倉実名",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_091": {
+    "en": "Shimizudani Saneaki",
+    "ja": "清水谷実秋",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_092": {
+    "en": "Sanjōnishi Sanetaka",
+    "ja": "三条西実隆",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_093": {
+    "en": "Nakayama Nobuchika",
+    "ja": "中山宣親",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_094": {
+    "en": "Iwayama Dōken",
+    "ja": "岩山道堅",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_095": {
+    "en": "Anegakōji Naritsugu (Sadatsugu)",
+    "ja": "姉小路済継",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_096": {
+    "en": "Shigenoi Norikuni",
+    "ja": "滋野井教国",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_097": {
+    "en": "Tominokōji Sukenao",
+    "ja": "富小路資直",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_098": {
+    "en": "Kitabatake Chikaaki",
+    "ja": "北畠親顕",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_099": {
+    "en": "Madenokōji Korefusa",
+    "ja": "万里小路惟房",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_100": {
+    "en": "Hosokawa Mochiyuki",
+    "ja": "細川持之",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_101": {
+    "en": "Fujiwara no Kiyosuke",
+    "ja": "藤原清輔",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_102": {
+    "en": "Minamoto no Yorimasa",
+    "ja": "源頼政",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_103": {
+    "en": "Nijō-in no Sanuki",
+    "ja": "二条院讃岐",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_104": {
+    "en": "Nijō Tamekane",
+    "ja": "二条為兼",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_105": {
+    "en": "Saigyō Hōshi",
+    "ja": "西行法師",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_106": {
+    "en": "Shōkō-in",
+    "ja": "称光院",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_107": {
+    "en": "Ton'a Hōshi",
+    "ja": "頓阿法師",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_108": {
+    "en": "Hibi Masahiro",
+    "ja": "日比正広",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_109": {
+    "en": "Botanka Shōhaku",
+    "ja": "牡丹花肖柏",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_110": {
+    "en": "Gyōkō",
+    "ja": "尭孝",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_111": {
+    "en": "Inawashiro Kensai",
+    "ja": "猪苗代兼載",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_112": {
+    "en": "Iwayama Sumihide",
+    "ja": "岩山澄秀",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_113": {
+    "en": "Shūkō",
+    "ja": "周興",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_114": {
+    "en": "Gyōken",
+    "ja": "尭憲",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_115": {
+    "en": "Gyōjo",
+    "ja": "行助",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_116": {
+    "en": "Sagara Tametsugu",
+    "ja": "相良為続",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_117": {
+    "en": "Satomura Shōshitsu",
+    "ja": "里村昌叱",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_118": {
+    "en": "Yuumu",
+    "ja": "友務",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_119": {
+    "en": "Satomura Genteki",
+    "ja": "昌琢玄的",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_120": {
+    "en": "Sōyō",
+    "ja": "宗養",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_121": {
+    "en": "Jōhōji Kōjo",
+    "ja": "定法寺公助",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_122": {
+    "en": "Sōryū",
+    "ja": "宗柳",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_123": {
+    "en": "Sōzen",
+    "ja": "宗全",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_124": {
+    "en": "Takeda Motomitsu",
+    "ja": "武田元光",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_125": {
+    "en": "Sōboku",
+    "ja": "宗牧",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_126": {
+    "en": "Sōchō",
+    "ja": "宗長",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_127": {
+    "en": "Tsumori Tsunekuni",
+    "ja": "津守経国",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_128": {
+    "en": "Satomura Jōha",
+    "ja": "里村紹巴",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_129": {
+    "en": "Satomura Shōtaku",
+    "ja": "里村昌琢",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_130": {
+    "en": "Shakuzen'in Songa",
+    "ja": "積善院尊雅",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_131": {
+    "en": "Takeno Jōō",
+    "ja": "武野紹鴎",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_132": {
+    "en": "Karasumaru Fuyumitsu",
+    "ja": "烏丸冬光",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_133": {
+    "en": "Hosokawa Sansai",
+    "ja": "細川三斎",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "CAL_134": {
+    "en": "Shōkado Shōjō",
+    "ja": "松花堂昭乗",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  }
+}

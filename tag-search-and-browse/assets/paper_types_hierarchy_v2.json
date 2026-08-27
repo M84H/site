@@ -1,0 +1,209 @@
+{
+  "PAP_001": {
+    "en": "Processed and decorated papers",
+    "ja": "加工・装飾料紙",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {
+      "PAP_002": {
+        "en": "Uchigumori-gami (cloud-patterned paper)",
+        "ja": "打曇紙",
+        "synonyms_en": [],
+        "synonyms_ja": [],
+        "children": {}
+      },
+      "PAP_003": {
+        "en": "Karakami (Paper decorated with woodblock-printed patterns (using mica or pigments) on a pigment-coated base.)",
+        "ja": "唐紙",
+        "synonyms_en": [],
+        "synonyms_ja": [],
+        "children": {}
+      },
+      "PAP_004": {
+        "en": "Gubiki-gami (pigment-coated paper / gofun-primed paper)",
+        "ja": "具引き紙",
+        "synonyms_en": [],
+        "synonyms_ja": [],
+        "children": {}
+      },
+      "PAP_005": {
+        "en": "Konshi (indigo-dyed paper)",
+        "ja": "紺紙",
+        "synonyms_en": [],
+        "synonyms_ja": [],
+        "children": {}
+      },
+      "PAP_006": {
+        "en": "Sukikake (partial pulp-layering technique)",
+        "ja": "漉きかけ",
+        "synonyms_en": [],
+        "synonyms_ja": [],
+        "children": {}
+      },
+      "PAP_007": {
+        "en": "Somegami (dyed paper)",
+        "ja": "染紙",
+        "synonyms_en": [],
+        "synonyms_ja": [],
+        "children": {}
+      },
+      "PAP_008": {
+        "en": "Dabishi(sutra-copying paper with mixed-in fine particles resembling cremation ash)",
+        "ja": "荼毘紙",
+        "synonyms_en": [],
+        "synonyms_ja": [],
+        "children": {}
+      },
+      "PAP_009": {
+        "en": "Ashide-e (reed-hand illustration / calligraphic landscape)",
+        "ja": "葦手絵",
+        "synonyms_en": [],
+        "synonyms_ja": [],
+        "children": {}
+      },
+      "PAP_010": {
+        "en": "Karazuri (blind embossing / blind printing)",
+        "ja": "空刷",
+        "synonyms_en": [],
+        "synonyms_ja": [],
+        "children": {}
+      },
+      "PAP_011": {
+        "en": "Kirabiki (mica-coated paper)",
+        "ja": "雲母引き",
+        "synonyms_en": [],
+        "synonyms_ja": [],
+        "children": {}
+      },
+      "PAP_012": {
+        "en": "Kirihaku (cut gold/silver leaf decoration)",
+        "ja": "切箔",
+        "synonyms_en": [],
+        "synonyms_ja": [],
+        "children": {}
+      },
+      "PAP_013": {
+        "en": "Kindeiji (gold-ink calligraphy)",
+        "ja": "金泥字",
+        "synonyms_en": [],
+        "synonyms_ja": [],
+        "children": {}
+      },
+      "PAP_014": {
+        "en": "Shita-e (background illustration)",
+        "ja": "下絵",
+        "synonyms_en": [],
+        "synonyms_ja": [],
+        "children": {}
+      },
+      "PAP_015": {
+        "en": " Sunago (sprinkled gold/silver leaf dust)",
+        "ja": "砂子",
+        "synonyms_en": [],
+        "synonyms_ja": [],
+        "children": {}
+      },
+      "PAP_016": {
+        "en": "Suminagashi (marbled paper)",
+        "ja": "墨流し",
+        "synonyms_en": [],
+        "synonyms_ja": [],
+        "children": {}
+      }
+    }
+  },
+  "PAP_017": {
+    "en": "Plain papers",
+    "ja": "素紙",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {
+      "PAP_018": {
+        "en": "Choshi (paper mulberry)",
+        "ja": "楮紙",
+        "synonyms_en": [],
+        "synonyms_ja": [],
+        "children": {}
+      },
+      "PAP_019": {
+        "en": "Choshi -uchigami (hammered paper mulberry)",
+        "ja": "楮紙打紙",
+        "synonyms_en": [],
+        "synonyms_ja": [],
+        "children": {}
+      },
+      "PAP_020": {
+        "en": " Hishi (gampi paper)",
+        "ja": "斐紙（雁皮紙）",
+        "synonyms_en": [],
+        "synonyms_ja": [],
+        "children": {
+          "PAP_021": {
+            "en": "Torinoko-gami , Atsuyō-hishi (Thick ganpi paper / thick gampishi (often called Torinoko paper))",
+            "ja": "鳥の子紙（厚様斐紙）",
+            "synonyms_en": [],
+            "synonyms_ja": [],
+            "children": {}
+          },
+          "PAP_022": {
+            "en": "Usuyō-hishi (Thin ganpi paper)",
+            "ja": "薄様斐紙",
+            "synonyms_en": [],
+            "synonyms_ja": [],
+            "children": {}
+          }
+        }
+      },
+      "PAP_023": {
+        "en": "Hicho-mazesuki-gami (Blended paper made from ganpi and paper mulberry (kōzo) fibers)",
+        "ja": "斐褚交ぜ漉き紙",
+        "synonyms_en": [],
+        "synonyms_ja": [],
+        "children": {}
+      },
+      "PAP_024": {
+        "en": "Mitsumata-gami(Mitsumata paper)",
+        "ja": "三椏紙 ",
+        "synonyms_en": [],
+        "synonyms_ja": [],
+        "children": {}
+      },
+      "PAP_025": {
+        "en": "Maniai-gami (Clay-filled paper / ganpi paper mixed with mineral dust (clay))",
+        "ja": "間合紙",
+        "synonyms_en": [],
+        "synonyms_ja": [],
+        "children": {}
+      },
+      "PAP_026": {
+        "en": "Shukushi,Sukikaeshi-gami (Recycled paper / paper made from re-pulped waste paper)",
+        "ja": "宿紙（漉き返し紙）",
+        "synonyms_en": [],
+        "synonyms_ja": [],
+        "children": {}
+      },
+      "PAP_027": {
+        "en": " Other paper",
+        "ja": "その他の紙",
+        "synonyms_en": [],
+        "synonyms_ja": [],
+        "children": {
+          "PAP_028": {
+            "en": "Mashi (Hemp paper)",
+            "ja": "麻紙",
+            "synonyms_en": [],
+            "synonyms_ja": [],
+            "children": {}
+          }
+        }
+      },
+      "PAP_029": {
+        "en": "Unidentified",
+        "ja": "未詳",
+        "synonyms_en": [],
+        "synonyms_ja": [],
+        "children": {}
+      }
+    }
+  }
+}
