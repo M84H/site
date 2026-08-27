@@ -28,14 +28,14 @@
     "synonyms_ja": [],
     "children": {
       "BIB_005": {
-        "en": "Vermillion Dots",
+        "en": "Dots (Red)",
         "ja": "朱点",
         "synonyms_en": [],
         "synonyms_ja": [],
         "children": {}
       },
       "BIB_006": {
-        "en": "Ink Dots",
+        "en": "Dots (Black)",
         "ja": "墨点",
         "synonyms_en": [],
         "synonyms_ja": [],
@@ -44,20 +44,20 @@
     }
   },
   "BIB_007": {
-    "en": "Kassaten/Ioriten",
+    "en": "Kassaten / Ioriten",
     "ja": "合点／庵点",
     "synonyms_en": [],
     "synonyms_ja": [],
     "children": {
       "BIB_008": {
-        "en": "Kassaten/Ioriten (Red)",
+        "en": "Kassaten / Ioriten (Red)",
         "ja": "合点／庵点（朱）",
         "synonyms_en": [],
         "synonyms_ja": [],
         "children": {}
       },
       "BIB_009": {
-        "en": "Kassaten/Ioriten (Black)",
+        "en": "Kassaten / Ioriten (Black)",
         "ja": "合点／庵点（墨）",
         "synonyms_en": [],
         "synonyms_ja": [],
@@ -70,58 +70,101 @@
     "ja": "界線",
     "synonyms_en": [],
     "synonyms_ja": [],
-    "children": {}
+    "children": {
+      "BIB_011": {
+        "en": "Gold ruling lines",
+        "ja": "金界",
+        "synonyms_en": [],
+        "synonyms_ja": [],
+        "children": {}
+      },
+      "BIB_012": {
+        "en": "Silver ruling lines",
+        "ja": "銀界",
+        "synonyms_en": [],
+        "synonyms_ja": [],
+        "children": {}
+      },
+      "BIB_013": {
+        "en": "Black ruling lines",
+        "ja": "墨界",
+        "synonyms_en": [],
+        "synonyms_ja": [],
+        "children": {}
+      },
+      "BIB_014": {
+        "en": "Gray ruling lines",
+        "ja": "淡墨界",
+        "synonyms_en": [],
+        "synonyms_ja": [],
+        "children": {}
+      },
+      "BIB_015": {
+        "en": "Indented ruling lines",
+        "ja": "押界",
+        "synonyms_en": [],
+        "synonyms_ja": [],
+        "children": {}
+      },
+      "BIB_016": {
+        "en": "Other",
+        "ja": "その他",
+        "synonyms_en": [],
+        "synonyms_ja": [],
+        "children": {}
+      }
+    }
   },
-  "BIB_011": {
+  "BIB_017": {
     "en": "Text on verso",
     "ja": "紙背文書",
     "synonyms_en": [],
     "synonyms_ja": [],
     "children": {}
   },
-  "BIB_012": {
+  "BIB_018": {
     "en": "Chirashigaki (scattered writing)",
     "ja": "散らし書き",
     "synonyms_en": [],
     "synonyms_ja": [],
     "children": {}
   },
-  "BIB_013": {
+  "BIB_019": {
     "en": "Joined sheets",
     "ja": "紙継ぎ",
     "synonyms_en": [],
     "synonyms_ja": [],
     "children": {}
   },
-  "BIB_014": {
+  "BIB_020": {
     "en": "Erased characters",
     "ja": "擦り消し",
     "synonyms_en": [],
     "synonyms_ja": [],
     "children": {}
   },
-  "BIB_015": {
+  "BIB_021": {
     "en": "Roll creases present",
     "ja": "巻皺",
     "synonyms_en": [],
     "synonyms_ja": [],
     "children": {}
   },
-  "BIB_016": {
+  "BIB_022": {
     "en": "Meibutsu-gire (Famous named fragment)",
     "ja": "名物切",
     "synonyms_en": [],
     "synonyms_ja": [],
     "children": {}
   },
-  "BIB_017": {
+  "BIB_023": {
     "en": "Replacement",
     "ja": "貼り替え",
     "synonyms_en": [],
     "synonyms_ja": [],
     "children": {}
   },
-  "BIB_018": {
+  "BIB_024": {
     "en": "Possible replacement",
     "ja": "貼り替えの可能性あり",
     "synonyms_en": [],
