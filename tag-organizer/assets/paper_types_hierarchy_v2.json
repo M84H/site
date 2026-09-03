@@ -82,13 +82,6 @@
         "synonyms_ja": [],
         "children": {}
       },
-      "PAP_013": {
-        "en": "Kindeiji (gold-ink calligraphy)",
-        "ja": "金泥字",
-        "synonyms_en": [],
-        "synonyms_ja": [],
-        "children": {}
-      },
       "PAP_014": {
         "en": "Shita-e (background illustration)",
         "ja": "下絵",
@@ -182,20 +175,19 @@
         "synonyms_ja": [],
         "children": {}
       },
+      "PAP_028": {
+        "en": "Mashi (Hemp paper)",
+        "ja": "麻紙",
+        "synonyms_en": [],
+        "synonyms_ja": [],
+        "children": {}
+      },
       "PAP_027": {
         "en": " Other paper",
         "ja": "その他の紙",
         "synonyms_en": [],
         "synonyms_ja": [],
-        "children": {
-          "PAP_028": {
-            "en": "Mashi (Hemp paper)",
-            "ja": "麻紙",
-            "synonyms_en": [],
-            "synonyms_ja": [],
-            "children": {}
-          }
-        }
+        "children": {}
       },
       "PAP_029": {
         "en": "Unidentified",
