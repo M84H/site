@@ -287,7 +287,7 @@
       margin-top: 2px;
     }
   </style>
-  <script type="module" crossorigin src="/tagger/assets/index-Dr0TMcaY.js"></script>
+  <script type="module" crossorigin src="/tagger/assets/index-KNTTfcW1.js"></script>
 </head>
 
 <body>
@@ -300,6 +300,11 @@
     <div style="display: flex; gap: 8px;">
       <button class="btn btn-secondary" onclick="clearSession()" title="Clear all local data and restart">Reset
         Session</button>
+      
+      <!-- Added Import Functionality -->
+      <input type="file" id="importJsonInput" accept=".json" style="display: none;" onchange="importFromJson(event)" />
+      <button class="btn btn-secondary" onclick="document.getElementById('importJsonInput').click()">Import JSON</button>
+      
       <button class="btn" onclick="exportToJson()">Export JSON</button>
       <button class="btn" onclick="exportToExcel()">Export Excel</button>
     </div>
