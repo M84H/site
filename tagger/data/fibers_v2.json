@@ -1,0 +1,87 @@
+{
+  "FIB_018": {
+    "en": "Choshi (paper mulberry)",
+    "ja": "楮紙",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "FIB_019": {
+    "en": "Choshi -uchigami (hammered paper mulberry)",
+    "ja": "楮紙打紙",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "FIB_020": {
+    "en": " Hishi (gampi paper)",
+    "ja": "斐紙（雁皮紙）",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {
+      "FIB_021": {
+        "en": "Torinoko-gami , Atsuyō-hishi (Thick ganpi paper / thick gampishi (often called Torinoko paper))",
+        "ja": "鳥の子紙（厚様斐紙）",
+        "synonyms_en": [],
+        "synonyms_ja": [],
+        "children": {}
+      },
+      "FIB_022": {
+        "en": "Usuyō-hishi (Thin ganpi paper)",
+        "ja": "薄様斐紙",
+        "synonyms_en": [],
+        "synonyms_ja": [],
+        "children": {}
+      }
+    }
+  },
+  "FIB_023": {
+    "en": "Hicho-mazesuki-gami (Blended paper made from ganpi and paper mulberry (kōzo) fibers)",
+    "ja": "斐褚交ぜ漉き紙",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "FIB_024": {
+    "en": "Mitsumata-gami(Mitsumata paper)",
+    "ja": "三椏紙 ",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "FIB_025": {
+    "en": "Maniai-gami (Clay-filled paper / ganpi paper mixed with mineral dust (clay))",
+    "ja": "間合紙",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "FIB_026": {
+    "en": "Shukushi,Sukikaeshi-gami (Recycled paper / paper made from re-pulped waste paper)",
+    "ja": "宿紙（漉き返し紙）",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "FIB_028": {
+    "en": "Mashi (Hemp paper)",
+    "ja": "麻紙",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "FIB_027": {
+    "en": " Other paper",
+    "ja": "その他の紙",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
+  "FIB_029": {
+    "en": "Unidentified",
+    "ja": "未詳",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  }
+}
