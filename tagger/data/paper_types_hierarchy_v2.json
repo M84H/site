@@ -5,6 +5,13 @@
     "synonyms_en": [],
     "synonyms_ja": [],
     "children": {
+      "PAP_018": {
+        "en": "uchigami (hammered paper)",
+        "ja": "打紙",
+        "synonyms_en": [],
+        "synonyms_ja": [],
+        "children": {}
+      },
       "PAP_002": {
         "en": "Uchigumori-gami (cloud-patterned paper)",
         "ja": "打曇紙",
