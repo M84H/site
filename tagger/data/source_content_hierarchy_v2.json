@@ -431,18 +431,208 @@
             "ja": "源氏物語",
             "synonyms_en": [],
             "synonyms_ja": [],
-            "children": {}
+            "children": {
+              "SRC_097": {
+                "en": "Primary text of Genji monogatari",
+                "ja": "本文（源氏物語）",
+                "synonyms_en": [],
+                "synonyms_ja": [],
+                "children": {}
+              },
+              "SRC_099": {
+                "en": "Commentaries on Genji monogatari",
+                "ja": "注釈書（源氏物語）",
+                "synonyms_en": [],
+                "synonyms_ja": [],
+                "children": {
+                  "SRC_105": {
+                    "en": "Genji shaku",
+                    "ja": "源氏釈",
+                    "synonyms_en": [],
+                    "synonyms_ja": [],
+                    "children": {}
+                  },
+                  "SRC_106": {
+                    "en": "Shimei shō",
+                    "ja": "紫明抄",
+                    "synonyms_en": [],
+                    "synonyms_ja": [],
+                    "children": {}
+                  },
+                  "SRC_107": {
+                    "en": "Kakai shō",
+                    "ja": "河海抄",
+                    "synonyms_en": [],
+                    "synonyms_ja": [],
+                    "children": {}
+                  },
+                  "SRC_108": {
+                    "en": "Kachō yosei",
+                    "ja": "花鳥余情",
+                    "synonyms_en": [],
+                    "synonyms_ja": [],
+                    "children": {}
+                  },
+                  "SRC_109": {
+                    "en": "Unidentified Commentaries",
+                    "ja": "未詳注釈書",
+                    "synonyms_en": [],
+                    "synonyms_ja": [],
+                    "children": {}
+                  }
+                }
+              },
+              "SRC_100": {
+                "en": "Summaries of Genji monogatari",
+                "ja": "梗概書（源氏物語）",
+                "synonyms_en": [],
+                "synonyms_ja": [],
+                "children": {
+                  "SRC_110": {
+                    "en": "Genji ōkagami",
+                    "ja": "源氏大鏡",
+                    "synonyms_en": [],
+                    "synonyms_ja": [],
+                    "children": {}
+                  },
+                  "SRC_111": {
+                    "en": "Genji kokagami",
+                    "ja": "源氏小鏡",
+                    "synonyms_en": [],
+                    "synonyms_ja": [],
+                    "children": {}
+                  },
+                  "SRC_112": {
+                    "en": "Unidentified Summaries",
+                    "ja": "未詳梗概書",
+                    "synonyms_en": [],
+                    "synonyms_ja": [],
+                    "children": {}
+                  }
+                }
+              },
+              "SRC_072": {
+                "en": "Genealogies of Genji monogatari",
+                "ja": "源氏物語系図",
+                "synonyms_en": [],
+                "synonyms_ja": [],
+                "children": {}
+              },
+              "SRC_101": {
+                "en": "Excerpts from Genji monogatari",
+                "ja": "源氏物語抜書",
+                "synonyms_en": [],
+                "synonyms_ja": [],
+                "children": {}
+              },
+              "SRC_102": {
+                "en": "Waka Anthologies from Genji monogatari",
+                "ja": "源氏物語和歌集",
+                "synonyms_en": [],
+                "synonyms_ja": [],
+                "children": {}
+              },
+              "SRC_103": {
+                "en": "Picture Scrolls & Illustrated Texts",
+                "ja": "絵詞",
+                "synonyms_en": [],
+                "synonyms_ja": [],
+                "children": {}
+              },
+              "SRC_104": {
+                "en": "Others",
+                "ja": "その他（源氏物語）",
+                "synonyms_en": [],
+                "synonyms_ja": [],
+                "children": {
+                  "SRC_113": {
+                    "en": "Genji Sagoromo utaawase",
+                    "ja": "源氏狭衣歌合",
+                    "synonyms_en": [],
+                    "synonyms_ja": [],
+                    "children": {}
+                  }
+                }
+              }
+            }
           },
           "SRC_062": {
             "en": "Ise monogatari",
             "ja": "伊勢物語",
             "synonyms_en": [],
             "synonyms_ja": [],
-            "children": {}
+            "children": {
+              "SRC_114": {
+                "en": "Primary text of Ise monogatari",
+                "ja": "本文（伊勢物語）",
+                "synonyms_en": [],
+                "synonyms_ja": [],
+                "children": {}
+              },
+              "SRC_070": {
+                "en": "Commentaries on Ise monogatari",
+                "ja": "注釈書（伊勢物語）",
+                "synonyms_en": [],
+                "synonyms_ja": [],
+                "children": {
+                  "SRC_071": {
+                    "en": "Ise monogatari gukenshō",
+                    "ja": "伊勢物語愚見抄",
+                    "synonyms_en": [],
+                    "synonyms_ja": [],
+                    "children": {}
+                  },
+                  "SRC_115": {
+                    "en": "Reizeiryū Ise monogatari shō",
+                    "ja": "冷泉流伊勢物語抄",
+                    "synonyms_en": [],
+                    "synonyms_ja": [],
+                    "children": {}
+                  },
+                  "SRC_118": {
+                    "en": "Waka chiken shū",
+                    "ja": "和歌知顕集",
+                    "synonyms_en": [],
+                    "synonyms_ja": [],
+                    "children": {}
+                  },
+                  "SRC_119": {
+                    "en": "Unidentified Commentaries",
+                    "ja": "未詳注釈書",
+                    "synonyms_en": [],
+                    "synonyms_ja": [],
+                    "children": {}
+                  }
+                }
+              },
+              "SRC_116": {
+                "en": "Waka Anthologies from Ise monogatari",
+                "ja": "伊勢物語和歌集",
+                "synonyms_en": [],
+                "synonyms_ja": [],
+                "children": {}
+              }
+            }
           },
           "SRC_063": {
             "en": "Genpei Jōsuiki (Heike monogatari)",
             "ja": "源平盛衰記",
+            "synonyms_en": [],
+            "synonyms_ja": [
+              "平家物語"
+            ],
+            "children": {}
+          },
+          "SRC_121": {
+            "en": "Heike monogatari",
+            "ja": "平家物語",
+            "synonyms_en": [],
+            "synonyms_ja": [],
+            "children": {}
+          },
+          "SRC_120": {
+            "en": "Sagoromo monogatari",
+            "ja": "狭衣物語",
             "synonyms_en": [],
             "synonyms_ja": [],
             "children": {}
@@ -484,35 +674,6 @@
         "synonyms_en": [],
         "synonyms_ja": [],
         "children": {}
-      },
-      "SRC_069": {
-        "en": "Commentaries on Prose Works",
-        "ja": "散文の注釈書",
-        "synonyms_en": [],
-        "synonyms_ja": [],
-        "children": {
-          "SRC_070": {
-            "en": "Commentary on Ise monogatari",
-            "ja": "伊勢物語注釈書",
-            "synonyms_en": [],
-            "synonyms_ja": [],
-            "children": {}
-          },
-          "SRC_071": {
-            "en": "Ise monogatari gukenshō",
-            "ja": "伊勢物語愚見抄",
-            "synonyms_en": [],
-            "synonyms_ja": [],
-            "children": {}
-          },
-          "SRC_072": {
-            "en": "Genji monogatari lineage chart",
-            "ja": "源氏物語系図",
-            "synonyms_en": [],
-            "synonyms_ja": [],
-            "children": {}
-          }
-        }
       },
       "SRC_073": {
         "en": "Other Prose Works",

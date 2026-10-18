@@ -188,6 +188,13 @@
     "synonyms_ja": [],
     "children": {}
   },
+  "CAL_028": {
+    "en": "Unknown",
+    "ja": "（未詳）",
+    "synonyms_en": [],
+    "synonyms_ja": [],
+    "children": {}
+  },
   "CAL_029": {
     "en": "Konoe Michitsugu",
     "ja": "近衛道嗣",
@@ -926,13 +933,6 @@
   "CAL_134": {
     "en": "Shōkado Shōjō",
     "ja": "松花堂昭乗",
-    "synonyms_en": [],
-    "synonyms_ja": [],
-    "children": {}
-  },
-  "CAL_028": {
-    "en": "Unknown",
-    "ja": "（未詳）",
     "synonyms_en": [],
     "synonyms_ja": [],
     "children": {}
